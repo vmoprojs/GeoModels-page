@@ -1,6 +1,6 @@
 # Site settings
 title: GeoModels
-description: This package provides a set of procedures for spatio-temporal modelling using composite likelihood.
+description: Package for spatial and spatio-temporal modelling using composite likelihood.
 # cover: assets/images/radhakrishna.jpg
 # logo: assets/images/logo.png
 # favicon: assets/images/favicon.png
@@ -13,7 +13,7 @@ twitter: twitter
 github:  github
 
 #Additional Pages
-about: about
+Resources-downloads: resources
 contact: contact
 privacy-policy: privacy-policy
 
