@@ -1,16 +1,16 @@
-hanuman:
-  username: hanuman
-  name: HANUMAN
-  location: Ayodhya
-  url_full: https://hanumanchalisa.net
-  url: hanumanchalisa.net
-  bio: Jai Shri Ram!
-  assets: assets/images/hanuman.png
-krishna:
-  username: krishna
-  name: KRISHNA
-  location: Vrindavan
-  url_full: https://shriradhakrishna.com
-  url: shriradhakrishna.com
-  bio: Radhe! Radhe!
-  assets: assets/images/favicon.png
+bevilacqua:
+  username: bevilacqua
+  name: Moreno
+  location: Chile
+  url_full: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
+  url: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
+bio: Moreno Bevilacqua is an Associate Professor at the Statistics Department of  University of Valparaiso  from August 2012. He has carried out research as: a post-doc at the Department of Statistics, University Ca' Foscari of Venice from May 2008 to December 2010, a research fellow at the University of Bergamo from January 2011 to July 2012. He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 from the University of Padua. His main research interests concern  theory, methodology and applications in multivariate spatio-temporal statistics.
+  assets: assets/images/moreno.jpeg
+morales:
+  username: VictorMoralesOnate
+  name: Victor
+  location: Ecuador
+  url_full: https://victormoralesonate.github.io/GeoModels/
+  url: https://victormoralesonate.github.io/GeoModels/
+  bio: Victor Morales-Onate is a PhD candidate of University of Valparaiso. His main research interests concern computational applications to spatio-temporal statistics.
+  assets: assets/images/vmo.jpeg
