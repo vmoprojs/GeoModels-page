@@ -4,7 +4,7 @@ bevilacqua:
   location: Chile
   url_full: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
   url: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
-  bio: Moreno Bevilacqua is an Associate Professor at the Statistics Department of  University of Valparaiso.
+  bio: Moreno Bevilacqua is an Associate Professor at the Statistics Department of University of Valparaiso
   assets: assets/images/moreno.jpeg
 morales:
   username: VictorMoralesOnate
@@ -12,5 +12,5 @@ morales:
   location: Ecuador
   url_full: https://victormoralesonate.github.io/GeoModels/
   url: https://victormoralesonate.github.io/GeoModels/
-  bio: Victor Morales-Onate is a PhD candidate of University of Valparaiso. His main research interests concern computational applications to spatio-temporal statistics.
+  bio: Victor Morales-Onate is a PhD candidate of University of Valparaiso. His main research interests concern computational applications to spatio-temporal statistics
   assets: assets/images/vmo.jpeg
