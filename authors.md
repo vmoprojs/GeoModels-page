@@ -1,8 +1,7 @@
 ---
 layout: page
 title: About the Authors
-comments: true
-permalink:/authors/
+permalink: /authors/
 ---
 
 <div id="authors">
