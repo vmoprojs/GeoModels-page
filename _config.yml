@@ -1,9 +1,9 @@
 # Site settings
 title: GeoModels
 description: This package provides a set of procedures for spatio-temporal modelling using composite likelihood.
-cover: assets/images/radhakrishna.jpg
-logo: assets/images/logo.png
-favicon: assets/images/favicon.png
+# cover: assets/images/radhakrishna.jpg
+# logo: assets/images/logo.png
+# favicon: assets/images/favicon.png
 baseurl: "/GeoModels/" # the subpath of your site, e.g. /blog/ or / for root url: "https://victormoralesonate.github.io" # the base hostname & protocol for your site
 paginate:	5 # The number of posts to show per page on your homepage
 
