@@ -1,22 +1,23 @@
 ---
 layout: page
 title: About the Authors
-comments: true
 permalink: /authors/
 ---
 
-<div id="authors">
-{% for author in site.data.authors %}
-<h3 id="{{ username }}">{{ author[1].name }}</h3>
-<ul class="posts">
-{% for post in site.posts %}
-{% if author[1].username == post.author %}
-{% if post.title != null %}
-<li itemscope><span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%B %d, %Y" }}</time></span> &raquo; <a href="{{ site.baseurl }}{{ post.url | remove: '/'}}">{{ post.title }}</a></li>
-{% endif %}
-{% endif %}
-{% endfor %}
-</ul>
-<hr>
-{% endfor %}
-</div>
+bevilacqua:
+username: bevilacqua
+name: Moreno
+location: Chile
+url_full: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
+url: https://sites.google.com/a/uv.cl/moreno-bevilacqua/
+bio: Moreno Bevilacqua is an Associate Professor at the Statistics Department of University of Valparaiso
+assets: assets/images/moreno.jpeg
+morales:
+username: VictorMoralesOnate
+name: Victor
+location: Ecuador
+url_full: https://victormoralesonate.github.io/GeoModels/
+url: https://victormoralesonate.github.io/GeoModels/
+bio: Victor Morales-Onate is a PhD candidate of University of Valparaiso. His main research interests concern computational applications to spatio-temporal statistics
+assets: assets/images/vmo.jpeg
+
