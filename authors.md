@@ -1,7 +1,6 @@
 ---
 layout: page
 title: About the Authors
-comments: false
 permalink: /authors/
 ---
 
