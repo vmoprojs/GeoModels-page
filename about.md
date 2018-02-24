@@ -6,6 +6,14 @@ permalink: /about/
 
 <img width="600" height="300" layout="responsive" src="https://www.flickr.com/photos/44494372@N05/5277460813/">
 
+### Image With Heading
+<figure class="ampstart-image-with-heading  m0 relative mb4">
+<amp-img src="{{ site.baseurl }}assets/images/about.jpg" width="600" height="400" layout="responsive" alt="" class="mb3"></amp-img>
+<figcaption class="absolute right-0 bottom-0 left-0">
+<header class="ampstart-image-heading px2 py2 line-height-4"><h1>Shiva</h1></header>
+</figcaption>
+</figure>
+
 This package provides a set of procedures for 
 
 a. simulation and estimation of some spatial and spatio-temporal random fields using standard likelihood and a likelihood approximation method called composite likelihood and 
