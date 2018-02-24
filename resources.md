@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Resources and Download
+permalink: /resources/
 ---
 <figure class="ampstart-image-with-heading  m0 relative mb4">
 <amp-img src="{{ site.baseurl }}assets/images/about.jpg" width="600" height="400" layout="responsive" alt="" class="mb3"></amp-img>
