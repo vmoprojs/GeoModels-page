@@ -7,6 +7,7 @@ permalink: /authors/
 <div id="authors">
 {% for author in site.data.authors %}
 <h3 id="{{ username }}">{{ author[1].name }}</h3>
+<h2 id="{{ location }}">{{ author[1].location }}</h2>
 <ul class="posts">
 {% for post in site.posts %}
 {% if author[1].username == post.author %}
