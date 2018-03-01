@@ -6,7 +6,7 @@ permalink: /authors/
 
 <div id="authors">
 {% for author in site.data.authors %}
-<h3 id="{{ username }}">{{ author[1].name }} {{ author[1].location }}</h3>
+<h3 id="{{ username }}">{{ author[1].name }}</h3>
 <h6 id="{{ username }}">{{ author[1].location }}</h6>
 <p id="{{ username }}">{{ author[1].bio }}</p>
 <ul class="posts">
