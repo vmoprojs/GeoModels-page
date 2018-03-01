@@ -43,6 +43,12 @@ Also, circular random fields can be analyzed.
 
 Please, visit our website for more information, news and feedback: https://vmoprojs.github.io/GeoModels-page/
 
+### Bug reports:
+
+*standard* GeoModels: (https://github.com/vmoprojs/GeoModels/issues)
+
+OpenCL GeoModels: (https://github.com/vmoprojs/GeoModels-OCL/issues) 
+
 ## About the authors
 
 ### Moreno Bevilacqua

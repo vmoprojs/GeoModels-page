@@ -1,12 +1,10 @@
 ---
 layout: post #cover: 'assets/images/shiva.jpg'
-title: Style Guide
+title: Welcome to GeoModels
 date: 2017-11-30 04:00:00
 tags: guide
 author: VMO
 ---
-
-# Welcome to GeoModels
 
 GeoModels is a package for statistical analysis of geo-referenced spatial and spatio-temporal data.
 
@@ -47,20 +45,4 @@ Also, circular random fields can be analyzed.
 
 ## Installation and more Info
 
-Please, visit our website for more information, news and feedback: https://vmoprojs.github.io/GeoModels-page/
-
-## About the authors
-
-### Moreno Bevilacqua
-
-Moreno Bevilacqua is an Associate Professor at the Statistics Department of  University of Valparaiso  from August 2012. He has carried out research as: a post-doc at the  Department of Statistics, University Ca' Foscari of Venice from May 2008 to December 2010, a research fellow at the University of Bergamo from January 2011 to July 2012. 
-
-He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 from the University of Padua. His main research interests concern  theory, methodology and applications in multivariate spatio-temporal statistics.
-
-#### URL: https://sites.google.com/a/uv.cl/moreno-bevilacqua/home
-
-### Víctor Morales-Oñate
-
-Víctor is an ecuadorian PhD candidate of the statistics programme at the University of Valparaiso. His main research interests concern  computational spatial (temporal) geostatistics applications.
-
-Other interests include cuantitative economy, fraud detection models, clustering and philosofy, particularly, Bertrand Russell's.
+Please, check our website for more information, news and feedback: (https://vmoprojs.github.io/GeoModels-page/)
