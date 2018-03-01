@@ -12,8 +12,7 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 morales:
   username: VictorMoralesOnate
   name: "Víctor Morales-Oñate"
-  location: Pelileo-Ecuador <a href="https://www.google.com.ec/maps/place/Pelileo+Centro,+Pelileo/@-1.3304224,-78.5453956,17z/data=!3m1!4b1!4m5!3m4!1s0x91d384c81eef4831:0xd89df7a7b5f786d2!8m2!3d-1.3301374!4d-78.5426602?hl=es-419"</a>
-
+  location: [Pelileo-Ecuador](<a href="https://www.google.com.ec/maps/place/Pelileo+Centro,+Pelileo/@-1.3304224,-78.5453956,17z/data=!3m1!4b1!4m5!3m4!1s0x91d384c81eef4831:0xd89df7a7b5f786d2!8m2!3d-1.3301374!4d-78.5426602?hl=es-419">)
   url_full: https://vmoprojs.github.io/GeoModels/
   url: "https://github.com/vmoprojs"
   bio: "Víctor is a PhD candidate of the statistics programme at the University of Valparaiso. His main research interests concern computational spatial (temporal) geostatistics applications.<br><br>

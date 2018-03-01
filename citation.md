@@ -5,7 +5,7 @@ permalink: /citation/
 ---
 
 
-Once you have installed `GeoModels`, you can have a BibTex citation with `citation("GeoModels)` and get:
+Once you have installed `GeoModels`, you can have a BibTex citation with `citation("GeoModels")` and get:
 
 ```R
 @Manual{,
