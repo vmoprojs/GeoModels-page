@@ -7,7 +7,7 @@ permalink: /authors/
 <div id="authors">
 {% for author in site.data.authors %}
 <h5 id="{{ username }}">{{ author[1].name }}</h5>
-<amp-img src="{{ username }}">{{ author[1].assets}} height="400" width="800"></amp-img>
+![alt text](https://github.com/vmoprojs/GeoModels-page/blob/master/assets/images/moreno.jpg)
 <p id="{{ username }}">{{ author[1].location }}</p>
 <p id="{{ username }}">{{ author[1].bio }}</p>
 <p id="{{ username }}">{{ author[1].url }}</p>
