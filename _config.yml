@@ -1,7 +1,7 @@
 # Site settings
 title: GeoModels
 description: Package for statistical analysis of geo-referenced spatial and spatio-temporal data
-# cover: assets/images/radhakrishna.jpg
+cover: assets/images/under_construction.jpg
 # logo: assets/images/logo.png
 # favicon: assets/images/favicon.png
 baseurl: "/GeoModels-page/" # the subpath of your site, e.g. /blog/ or / for root url: "https://victormoralesonate.github.io" # the base hostname & protocol for your site
