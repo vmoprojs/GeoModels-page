@@ -53,9 +53,6 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 
 #### URL: https://sites.google.com/a/uv.cl/moreno-bevilacqua/home
 
-
-## About the authors
-
 ### Víctor Morales-Oñate
 
 Víctor is an ecuadorian PhD candidate of the statistics programme at the University of Valparaiso. His main research interests concern  computational spatial (temporal) geostatistics applications.
