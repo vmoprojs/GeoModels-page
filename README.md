@@ -41,7 +41,7 @@ Also, circular random fields can be analyzed.
 
 ## Installation and more Info
 
-Please, visit our website for more informationm news and feedback: https://vmoprojs.github.io/GeoModels-page/
+Please, visit our website for more information, news and feedback: https://vmoprojs.github.io/GeoModels-page/
 
 ## About the authors
 
