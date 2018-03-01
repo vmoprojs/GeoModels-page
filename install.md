@@ -5,10 +5,29 @@ permalink: /install/
 ---
 
 
-This package provides a set of procedures for 
+We currently are loaded in Github only. This means that for `GeoModels` installation you will need to previously install [`devtools`](https://cran.r-project.org/web/packages/devtools/index.html) package if you do not have it installed yet:
 
-a. simulation and estimation of some spatial and spatio-temporal random fields using standard likelihood and a likelihood approximation method called composite likelihood and 
+`
+install.packages(devtools)
+library(devtools)
+`
 
-b. prediction using best linear unbiased prediction.  Spatio (temporal) bivariate data estimation involves estimation of both regression and covariance parameters. 
+`devtools` lets you install pacakges from github since they need to be installed from source code.
 
-Gaussian and some non Gaussian Random fields can be analyzed using the `Geomodels` package. Among them gamma, Weibull, log-Gaussian, binomial, negative binomial, skewGaussian, StudenT and circular random fields can be analyzed.
+
+We have developed two GeoModels version, one *standard* version and one that uses the `OpenCL` framework for parallel computing. The standard version can be installed in any operating system: Windows, OSX and Linux,
+
+`
+install_github("vmoprojs/GeoModels")
+library(GeoModels)
+`
+
+and you are good to go. 
+
+The OpenCL `GeoModels` version is currently supported for **OSX only**. It is installed with this code:
+
+`
+install_github("vmoprojs/GeoModels-OCL")
+library(GeoModels)
+`
+
