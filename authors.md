@@ -13,7 +13,7 @@ permalink: /authors/
 </p>
 <p id="{{ username }}">{{ author[1].location }}</p>
 <p id="{{ username }}">{{ author[1].bio }}</p>
-<p id="{{ username }}">{{ author[1].url }}</p>
+<p More info about this author at: href="{{ username }}">{{ author[1].url }}</p>
 <ul class="posts">
 {% for post in site.posts %}
 {% if author[1].username == post.author %}
