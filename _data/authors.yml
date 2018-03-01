@@ -7,7 +7,7 @@ bevilacqua:
   bio: "Moreno Bevilacqua is an Associate Professor at the Statistics Department of University of Valparaiso from August 2012. He has carried out research as: a post-doc at the Department of Statistics, University Ca' Foscari of Venice from May 2008 to December 2010, a research fellow at the University of Bergamo from January 2011 to July 2012.<br><br>
 
 He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 from the University of Padua. His main research interests concern theory, methodology and applications in multivariate spatio-temporal statistics."
-  assets: assets/images/moreno.jpeg
+  assets: "assets/images/moreno.jpg"
 
 morales:
   username: VictorMoralesOnate
@@ -18,4 +18,4 @@ morales:
   bio: "Víctor is an ecuadorian PhD candidate of the statistics programme at the University of Valparaiso. His main research interests concern computational spatial (temporal) geostatistics applications.<br><br>
 
 Other interests include cuantitative economy, fraud detection models, clustering and philosofy, particularly, Bertrand Russell's."
-  assets: assets/images/vmo.jpeg
+  assets: "assets/images/vmo.jpg"
