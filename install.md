@@ -20,7 +20,6 @@ We have developed two GeoModels version, one *standard* version and one that use
 ```
 install_github("vmoprojs/GeoModels")
 library(GeoModels)
-
 ```
 
 and you are good to go. 
