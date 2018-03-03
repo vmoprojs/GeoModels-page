@@ -15,14 +15,14 @@ The GeoModels provides a set of procedures for simulation,  estimation  and pred
 The main features of the package are:
 
 
-1. The type of data that can be modeled are:
-*   spatial data
-*   space time data with fixed location spatial sites
-*   space time data with dynamical location spatial sites
-*   bivariate spatial data with fixed location spatial sites
-*   bivariate spatial data with different location spatial sites
-2. Data can be defined on euclidean space or on a sphere of arbitrary radius
-3. The random fields can have the following marginal distributions:
+* The type of data that can be modeled are:
+    *   spatial data
+    *   space time data with fixed location spatial sites
+    *   space time data with dynamical location spatial sites
+    *   bivariate spatial data with fixed location spatial sites
+    *   bivariate spatial data with different location spatial sites
+* Data can be defined on euclidean space or on a sphere of arbitrary radius
+* The random fields can have the following marginal distributions:
     *   On the real line
         *   Gaussian
         *   Skew-Gaussian
@@ -40,7 +40,7 @@ The main features of the package are:
     *   On bounded support
         *   Uniform  (under development)
         *   Wrapped-Gaussian for directional data
-4. Parametric models for both regression and dependence analysis through covariance models
-5. Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern
-6. Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)
-7. Optimal (linear) prediction
+* Parametric models for both regression and dependence analysis through covariance models
+* Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern
+* Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)
+* Optimal (linear) prediction
