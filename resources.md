@@ -16,13 +16,11 @@ The main features of the package are:
 
 
 1. The type of data that can be modeled are:
-
 -   spatial data
 -   space time data with fixed location spatial sites
 -   space time data with dynamical location spatial sites
 -   bivariate spatial data with fixed location spatial sites
 -   bivariate spatial data with different location spatial sites
-
 2. Data can be defined on euclidean space or on a sphere of arbitrary radius
 
 
