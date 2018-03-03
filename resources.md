@@ -16,30 +16,30 @@ The main features of the package are:
 
 
 1. The type of data that can be modeled are:
-+   spatial data
-+   space time data with fixed location spatial sites
-+   space time data with dynamical location spatial sites
-+   bivariate spatial data with fixed location spatial sites
-+   bivariate spatial data with different location spatial sites
+*   spatial data
+*   space time data with fixed location spatial sites
+*   space time data with dynamical location spatial sites
+*   bivariate spatial data with fixed location spatial sites
+*   bivariate spatial data with different location spatial sites
 2. Data can be defined on euclidean space or on a sphere of arbitrary radius
 3. The random fields can have the following marginal distributions:
-    +   On the real line
-        +   Gaussian
-        +   Skew-Gaussian
-        +   Student T
-        +   Two Piece T
-    +   On the positive real line
-        +   Gamma
-        +   Weibull
-        +   Logistic (under development)
-        +   LogLogistic (under development)
-        +   LogGaussian
-    +   On positive natural numbers
-        +   binomial
-        +   negative binomial
-    +   On bounded support
-        +   Uniform  (under development)
-        +   Wrapped-Gaussian for directional data
+    *   On the real line
+        *   Gaussian
+        *   Skew-Gaussian
+        *   Student T
+        *   Two Piece T
+    *   On the positive real line
+        *   Gamma
+        *   Weibull
+        *   Logistic (under development)
+        *   LogLogistic (under development)
+        *   LogGaussian
+    *   On positive natural numbers
+        *   binomial
+        *   negative binomial
+    *   On bounded support
+        *   Uniform  (under development)
+        *   Wrapped-Gaussian for directional data
 4. Parametric models for both regression and dependence analysis through covariance models
 5. Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern
 6. Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)
