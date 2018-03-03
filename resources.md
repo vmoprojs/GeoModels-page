@@ -9,10 +9,71 @@ permalink: /resources/
 </figcaption>
 </figure>
 
-This package provides a set of procedures for 
+The GeoModels provides a set of procedures for simulation,  estimation  and prediction of spatio-temporal random fields.
+The main features of the package are:
 
-a. simulation and estimation of some spatial and spatio-temporal random fields using standard likelihood and a likelihood approximation method called composite likelihood and 
+--------------------------------------------
 
-b. prediction using best linear unbiased prediction.  Spatio (temporal) bivariate data estimation involves estimation of both regression and covariance parameters. 
+## The type of data that can be modeled are:
 
-Gaussian and some non Gaussian Random fields can be analyzed using the `Geomodels` package. Among them gamma, Weibull, log-Gaussian, binomial, negative binomial, skewGaussian, StudenT and circular random fields can be analyzed.
+-   spatial data
+
+-   space time data with fixed location spatial sites
+
+-   space time data with dynamical location spatial sites
+
+-   bivariate spatial data with fixed location spatial sites
+
+-   bivariate spatial data with different location spatial sites
+
+
+### Data can be defined on euclidean space or on a sphere of arbitrary radius
+
+
+### The random fields can have the following marginal distributions:
+
+#### On the real line
+
+-   Gaussian
+
+-   Skew-Gaussian
+
+-   Student T
+
+-   Two Piece T
+
+#### On the positive real line
+
+-   Gamma
+
+-   Weibull
+
+-   Logistic (under development)
+
+-   LogLogistic (under development)
+
+-   LogGaussian
+
+#### On positive natural numbers
+
+-   binomial
+
+-   negative binomial
+
+#### On bounded support
+
+-   Uniform  (under development)
+
+-   Wrapped-Gaussian for directional data
+
+
+### Parametric models for both regression and dependence analysis through covariance models
+
+
+### Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern
+
+
+### Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)
+
+
+### Optimal (linear) prediction
