@@ -10,6 +10,8 @@ permalink: /resources/
 </figure>
 
 The GeoModels provides a set of procedures for simulation,  estimation  and prediction of spatio-temporal random fields.
+
+
 The main features of the package are:
 
 
@@ -20,7 +22,6 @@ The main features of the package are:
 -   space time data with dynamical location spatial sites
 -   bivariate spatial data with fixed location spatial sites
 -   bivariate spatial data with different location spatial sites
-
 
 2. Data can be defined on euclidean space or on a sphere of arbitrary radius
 
