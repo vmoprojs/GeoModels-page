@@ -33,6 +33,6 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 
 <p>Víctor is a PhD candidate of the statistics programme at the University of Valparaiso. His main research interests concern computational spatial (temporal) geostatistics applications.
 <br>
-Other interests include cuantitative economy, fraud detection models, clustering and philosophy, particularly, Bertrand Russell's.</p>
+Other interests include cuantitative economy, fraud detection models, clustering and philosophy, particularly, Bertrand Russell's political ideas.</p>
 
 <a title="test link" href="https://github.com/vmoprojs">test link</a>
