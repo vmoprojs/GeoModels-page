@@ -9,7 +9,7 @@ permalink: /authors/
 
 <h5 id="heading5">Moreno Bevilacqua</h5>
 
-<amp-img src="{{ site.baseurl }}assets/images/moreno.jpg" width="200" height="150" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="{{ site.baseurl }}assets/images/moreno.jpg" width="50" height="30" layout="responsive" alt="" class="mb3"></amp-img>
 
 <h6 id="heading5">Chile</h6>
 
@@ -18,14 +18,14 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 
 
 
-<a title="Personal site" href="https://sites.google.com/a/uv.cl/moreno-bevilacqua/">test link</a>
+<a title="Personal site" href="https://sites.google.com/a/uv.cl/moreno-bevilacqua/">Personal site</a>
 
 
 
 
 <h5 id="heading5">Víctor Morales-Oñate</h5>
 
-<amp-img src="{{ site.baseurl }}assets/images/vmo.jpg" width="200" height="150" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="{{ site.baseurl }}assets/images/vmo.jpg" width="50" height="30" layout="responsive" alt="" class="mb3"></amp-img>
 
 
 <h6 id="heading5">Pelileo-Ecuador</h6>
@@ -35,4 +35,4 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 <br>
 Other interests include cuantitative economy, fraud detection models, clustering and philosophy, particularly, Bertrand Russell's political ideas.</p>
 
-<a title="Personal site" href="https://github.com/vmoprojs">test link</a>
+<a title="Personal site" href="https://github.com/vmoprojs">Personal site</a>
