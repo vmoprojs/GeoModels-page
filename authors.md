@@ -7,7 +7,7 @@ permalink: /authors/
 <div id="authors">
 {% for author in site.data.authors %}
 <h5 id="{{ username }}">{{ author[1].name }}</h5>
-<img src="{{ site.baseurl }}>{{ author[1].assets }}" width="500" height="400" alt = "">
+<img src="{{ site.baseurl }}>{{ username }}>{{ author[1].assets }}" width="500" height="400" alt = "">
 <p id="{{ username }}">{{ author[1].location }}</p>
 <p id="{{ username }}">{{ author[1].bio }}</p>
 <p More info about this author at: href="{{ username }}">{{ author[1].url }}</p>
