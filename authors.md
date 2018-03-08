@@ -9,7 +9,7 @@ permalink: /authors/
 
 <h5 id="heading5">Moreno Bevilacqua</h5>
 
-<amp-img src="{{ site.baseurl }}assets/images/moreno.jpg" width="20" height="30" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="{{ site.baseurl }}assets/images/moreno.jpg" width="200" height="150" layout="responsive" alt="" class="mb3"></amp-img>
 
 <h6 id="heading5">Chile</h6>
 
@@ -25,7 +25,7 @@ He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 f
 
 <h5 id="heading5">Víctor Morales-Oñate</h5>
 
-<amp-img src="{{ site.baseurl }}assets/images/vmo.jpg" width="20" height="30" layout="responsive" alt="" class="mb3"></amp-img>
+<amp-img src="{{ site.baseurl }}assets/images/vmo.jpg" width="200" height="150" layout="responsive" alt="" class="mb3"></amp-img>
 
 
 <h6 id="heading5">Pelileo-Ecuador</h6>
