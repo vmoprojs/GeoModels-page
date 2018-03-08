@@ -4,9 +4,6 @@ title: About the Authors
 permalink: /authors/
 ---
 
-<h1 id="heading1">About the Authors</h1>
-
-
 <h5 id="heading5">Moreno Bevilacqua</h5>
 
 <amp-img src="{{ site.baseurl }}assets/images/moreno.jpg" width="200" height="150" layout="responsive" alt="" class="mb3"></amp-img>
