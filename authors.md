@@ -6,7 +6,7 @@ permalink: /authors/
 
 <h5 id="heading5">Moreno Bevilacqua</h5>
 
-<img src="{{ site.baseurl }}assets/images/moreno.jpg" alt="Moreno" width="280" height="370">
+<img src="{{ site.baseurl }}assets/images/moreno.jpg" alt="Moreno" width="270" height="370">
 
 <h6 id="heading5">Chile</h6>
 
