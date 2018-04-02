@@ -28,10 +28,11 @@ The main features of the package are:
         *   Skew-Gaussian
         *   Student T
         *   Two Piece T
+        *   Two Piece Gaussian
+        *   Logistic
     *   On the positive real line
         *   Gamma
         *   Weibull
-        *   Logistic (under development)
         *   LogLogistic (under development)
         *   LogGaussian
     *   On positive natural numbers
