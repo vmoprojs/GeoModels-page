@@ -10,33 +10,7 @@ Let's clear space and load required libraries
     rm(list=ls())
     library(GeoModels)
     require(fields)
-
-    ## Loading required package: fields
-
-    ## Loading required package: spam
-
-    ## Loading required package: dotCall64
-
-    ## Loading required package: grid
-
-    ## Spam version 2.1-2 (2017-12-21) is loaded.
-    ## Type 'help( Spam)' or 'demo( spam)' for a short introduction 
-    ## and overview of this package.
-    ## Help for individual functions is also obtained by adding the
-    ## suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
-
-    ## 
-    ## Attaching package: 'spam'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     backsolve, forwardsolve
-
-    ## Loading required package: maps
-
     require(gsl)
-
-    ## Loading required package: gsl
 
 Set model:
 
@@ -108,11 +82,11 @@ Estimation with pairwise likelihood:
     ## Number of estimated parameters: 4 
     ## 
     ## Type of convergence: Successful 
-    ## Maximum log-Composite-Likelihood value: -2602.93
+    ## Maximum log-Composite-Likelihood value: -2333.09
     ## 
     ## Estimated parameters:
     ##    mean    mean1    scale    shape  
-    ## -0.2837   0.4518   0.3538   1.8575  
+    ## -0.3174   0.5141   0.3206   2.0231  
     ## 
     ## ##################################################################
 
