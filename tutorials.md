@@ -1,4 +1,6 @@
 -   [Weibull](#weibull)
+-   [Matern vs Gen\_Wendland from simple kriging point of
+    view](#matern-vs-gen_wendland-from-simple-kriging-point-of-view)
 
 Weibull
 -------
@@ -65,7 +67,7 @@ parameter the X is not necessary
     scale <- 0.3
     power2=4
 
-### Simulation:
+Simulation:
 
     param=list(mean=mean,mean1=mean1,sill=sill, nugget=nugget,
                scale=scale,power2=power2,shape=shape)
@@ -78,7 +80,7 @@ parameter the X is not necessary
     #CC<- GeoCovmatrix(coordx=coords, corrmodel=corrmodel,model=model,X=X,
      #             param=param)$covmat
 
-### Estimation with pairwise likelihood:
+Estimation with pairwise likelihood:
 
     start=list(mean=mean,mean1=mean1,scale=scale,shape=shape)
     fixed=list(sill=sill,nugget=nugget,power2=power2)
@@ -106,11 +108,11 @@ parameter the X is not necessary
     ## Number of estimated parameters: 4 
     ## 
     ## Type of convergence: Successful 
-    ## Maximum log-Composite-Likelihood value: -2039.29
+    ## Maximum log-Composite-Likelihood value: -2602.93
     ## 
     ## Estimated parameters:
     ##    mean    mean1    scale    shape  
-    ## -0.3823   0.5023   0.2538   2.0614  
+    ## -0.2837   0.4518   0.3538   1.8575  
     ## 
     ## ##################################################################
 
@@ -131,7 +133,7 @@ Computing residuals:
 
 ![](tutorials_files/figure-markdown_strict/unnamed-chunk-7-2.png)
 
-**Kriging:**
+Kriging:
 
     colour <- rainbow(100)
 
@@ -157,3 +159,115 @@ Computing residuals:
     image.plot(xx, xx, map_mse,col=colour,xlab="",ylab="",main="std err ")
 
 ![](tutorials_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+
+Matern vs Gen\_Wendland from simple kriging point of view
+---------------------------------------------------------
+
+Let's clear space and load required libraries
+
+    rm(list=ls())
+    library(GeoModels)
+    library(fields)
+
+Set parameters:
+
+    mean<-0
+    nugget<-0
+    sill<-1
+    # Set the Matern covariance parameters:
+    corrmodel_1 <- "Matern"
+    scale<-0.3/3
+    smooth=0.5
+    param<-list(mean=mean,sill=sill,nugget=nugget,scale=scale,smooth=smooth)
+    # Set the GenWendland covariance parameters 
+    corrmodel_2 <- "GenWend"
+    power2=3
+    c_supp<-0.3
+    smooth_wen=0
+    param_wen<-list(mean=mean,sill=sill,nugget=nugget,scale=c_supp,
+                   power2=power2,smooth=smooth_wen)
+
+Under this setting the correlations are compatible i.e. the induced
+Gaussian RF are equivalent (see Bevilacqua M., Faouzi T., Furrer R.,
+Porcu E. (2018). Estimation and prediction using generalized Wendland
+covariance function under fixed domain asymptotics. Annals of
+Statistics. To appear )
+
+    set.seed(79)
+
+    k=1
+    ratio_mse=NULL
+
+    while(k<=10)
+    {
+
+    # location sites 
+    x <- runif(150*k, 0, 1)
+    y <- runif(150*k, 0, 1)
+    coords<-cbind(x,y)
+
+    # Simulation of the spatial Gaussian RF under the true  Matern correlation
+    data <- GeoSim(coordx=coords, corrmodel=corrmodel_1,
+                  param=param)$data
+
+    # locations to predict
+    xx<-seq(0,1,0.03)
+    loc_to_pred<-as.matrix(expand.grid(xx,xx))
+
+    ################################################################
+    ### Simple kriging under the true  Matern correlation
+    ###############################################################
+    pr_mat<-GeoKrig(loc=loc_to_pred,coordx=coords,corrmodel=corrmodel_1,
+           param= param, data=data,mse=TRUE)
+    ################################################################
+    ### Simple kriging under the misspecified  Gen_wendland correlation
+    ###############################################################
+    pr_wen=GeoKrig(loc=loc_to_pred,coordx=coords,corrmodel=corrmodel_2,data=data,
+           param=param_wen,sparse=TRUE,mse=TRUE)
+
+    ## computing mean of ratios
+    ratio_mse=c(ratio_mse,mean(pr_wen$mse/pr_mat$mse))
+    k=k+1
+    print(k)
+    }
+
+    ## [1] 2
+    ## [1] 3
+    ## [1] 4
+    ## [1] 5
+    ## [1] 6
+    ## [1] 7
+    ## [1] 8
+    ## [1] 9
+    ## [1] 10
+    ## [1] 11
+
+Plotting (increasing) number of location sites vs ratio of MSE. Under
+fixed domain asymptotics the ratio converge to 1 i.e. prediction and MSE
+are asymptotically equivalent
+
+    k=1:10
+    plot(150*k,ratio_mse,ylim=c(1,1.07),xlab="n",ylab="ratio of MSE",pch=20)
+
+![](tutorials_files/figure-markdown_strict/unnamed-chunk-12-1.png)
+
+    colour <- rainbow(100)
+    par(mfrow=c(2,2))
+    # simple kriging map prediction
+    image.plot(xx, xx, matrix(pr_mat$pred,ncol=length(xx)),col=colour,
+               xlab="",ylab="",
+               main="Simple Kriging with  Matern model ")
+
+    # simple kriging map prediction variance
+    image.plot(xx, xx, matrix(pr_mat$mse,ncol=length(xx)),col=colour,
+               xlab="",ylab="",main="Std error")
+
+    # simple tapered kriging map prediction
+    image.plot(xx, xx, matrix(pr_wen$pred,ncol=length(xx)),col=colour,
+               xlab="",ylab="",main="Simple Kriging with GenWendland model")
+
+    # simple kriging map prediction variance
+    image.plot(xx, xx, matrix(pr_wen$mse,ncol=length(xx)),col=colour,
+               xlab="",ylab="",main="Std error")
+
+![](tutorials_files/figure-markdown_strict/unnamed-chunk-12-2.png)
