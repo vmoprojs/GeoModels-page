@@ -1,6 +1,3 @@
-Tutorials
----------
-
 <table>
 <colgroup>
 <col width="21%" />
@@ -22,3 +19,4 @@ Tutorials
 </tr>
 </tbody>
 </table>
+
