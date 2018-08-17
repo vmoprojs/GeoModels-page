@@ -1,6 +1,7 @@
 # Site settings
 title: GeoModels
 description: Package for statistical analysis of geo-referenced spatial and spatio-temporal data
+color: black
 #avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
 cover: assets/images/front1.png
 logo: assets/images/under_construction.jpg
