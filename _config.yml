@@ -7,7 +7,7 @@ logo: assets/images/under_construction.jpg
 baseurl: "/GeoModels-page/" # the subpath of your site, e.g. /blog/ or / for root url: "https://victormoralesonate.github.io" # the base hostname & protocol for your site
 paginate:	5 # The number of posts to show per page on your homepage
 
-assets/images/under_construction.jpg
+#assets/images/under_construction.jpg
 
 # Social
 facebook: facebook
