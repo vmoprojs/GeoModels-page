@@ -1,9 +1,9 @@
 # Site settings
 title: GeoModels
 description: Package for statistical analysis of geo-referenced spatial and spatio-temporal data
-cover: assets/images/under_construction.jpg
+#cover: assets/images/under_construction.jpg
 logo: assets/images/under_construction.jpg
-# favicon: assets/images/favicon.png
+favicon: assets/images/about.png
 baseurl: "/GeoModels-page/" # the subpath of your site, e.g. /blog/ or / for root url: "https://victormoralesonate.github.io" # the base hostname & protocol for your site
 paginate:	5 # The number of posts to show per page on your homepage
 
