@@ -1,7 +1,7 @@
 @import 'bourbon/bourbon';
 @import 'syntax-highlighting';
 
-$grey-color:       #fff;
+$grey-color:       #828282;
 $theme-color: #ff6f00;
 
 .icon {
@@ -312,7 +312,7 @@ body {
       hyphens: auto;
     }
     a {
-      color: #fff;
+      color: #333333;
       text-decoration: underline;
     }
     amp-img, amp-youtube {
@@ -658,7 +658,7 @@ th, td {
 }
 
 tr:nth-child(odd), th {
-    background-color: #fff;
+    background-color: #f2f2f2;
 }
 
 blockquote {
@@ -699,7 +699,6 @@ blockquote {
 
 .title {
     background: none;
-    color: #333333;
 }
 
 body > figure > figcaption > header > h2 {
@@ -710,7 +709,6 @@ body > figure > figcaption > header > h2 {
     font-size: 1.5rem;
     text-shadow: 0 2px 1px rgba(0, 0, 0, 0.67);
     background: none;
-    color: #333333;
 }
 
 .ampstart-read{
