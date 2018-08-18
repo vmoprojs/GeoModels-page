@@ -237,6 +237,7 @@ body {
     padding: 0;
   }
   .author-image {
+    background-color: #ffffff;
     background-image: url({{ site.baseurl }}{{site.author_image}});
     display: inline-block;
     width: 30px;
