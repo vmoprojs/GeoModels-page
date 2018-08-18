@@ -264,7 +264,7 @@ body {
   .post-content {
     width: 100%;
     font-family: $font-serif;
-    color: #fff;
+    color: #333333;
     h1, h2, h3 {
       font-family: $font-sans;
     }
@@ -306,7 +306,7 @@ body {
       letter-spacing: -.002em;
       margin-top: 30px;
       margin-bottom: 0;
-      color: #333333;
+      color: #fff;
       -webkit-hyphens: auto;
       -moz-hyphens: auto;
       hyphens: auto;
