@@ -2,7 +2,7 @@
 @import 'syntax-highlighting';
 
 $grey-color:       #828282;
-$theme-color: #ff6f00;
+$theme-color: #ff6f00; // for Installation etc backgroud
 
 .icon {
 
@@ -198,7 +198,7 @@ body {
     color: #999999;
     text-decoration: none;
     &:hover {
-      color: #333333;
+      color: #fff;
     }
   }
 }
