@@ -137,7 +137,7 @@ body {
       margin-bottom: 10px;
       a {
         text-decoration: none;
-        color: #ffffff;
+        color: #333332;
         &:hover {
           color: $theme-color;
           text-decoration: none;
@@ -704,6 +704,7 @@ blockquote {
 
 body > figure > figcaption > header > h2 {
     text-align: center;
+color: #fff;
 }
 
 .description {
