@@ -3,7 +3,7 @@ title: GeoModels
 description: Package for statistical analysis of geo-referenced spatial and spatio-temporal data
 #color: white
 #avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
-cover: assets/images/front2.png
+cover: assets/images/front.png
 logo: assets/images/under_construction.jpg
 #favicon: assets/images/about.png
 baseurl: "/GeoModels-page/" # the subpath of your site, e.g. /blog/ or / for root url: "https://victormoralesonate.github.io" # the base hostname & protocol for your site
