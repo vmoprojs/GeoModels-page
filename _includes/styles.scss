@@ -240,8 +240,8 @@ body {
     background-color: #ffffff;
     background-image: url({{ site.baseurl }}{{site.author_image}});
     display: inline-block;
-    width: 300px;
-    height: 300px;
+    width: 30px;
+    height: 30px;
     line-height: 30px;
     margin-right: 8px;
     margin-bottom: -10px;
@@ -419,8 +419,8 @@ body {
       }
       .author-image {
         display: block;
-        width: 300px;
-        height: 300px;
+        width: 80px;
+        height: 80px;
         float: left;
         background-size: cover;
         background-color: #ffffff;
