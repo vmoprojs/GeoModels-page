@@ -10,8 +10,7 @@ Once you have installed `GeoModels`, you can have a BibTex citation with `citati
 ```R
 To cite package ‘GeoModels’ in publications use:
 
-Moreno Bevilacqua and Víctor Morales-Oñate (2018). GeoModels: Analysis
-of spatio (temporal/bivariate) Gaussian and non Gaussian Random Fields.
+Moreno Bevilacqua and Víctor Morales-Oñate (2018). GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis.
 R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/
 
 A BibTeX entry for LaTeX users is
