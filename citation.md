@@ -16,9 +16,9 @@ R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/
 
 A BibTeX entry for LaTeX users is
 
-@Manual{,
-title = {GeoModels: Analysis of spatio (temporal/bivariate) Gaussian and non Gaussian Random Fields},
-author = {Moreno Bevilacqua and Víctor Morales-Oñate},
+@Manual{GM2018,
+title = {GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis},
+author = {Bevilacqua, M.  and Morales-O{\~n}ate, V.},
 year = {2018},
 note = {R package version 1.0.3-4},
 url = {https://vmoprojs.github.io/GeoModels-page/},
