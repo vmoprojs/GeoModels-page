@@ -114,7 +114,7 @@
         
         <header>
             <h2 id = "Home">GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis</h2>
-            <img src="Figures/header.png" alt="header" width="700" height="300">
+            <!--<img src="Figures/header.png" alt="header" width="700" height="300"> -->
         </header>
         
         <section>
@@ -138,20 +138,20 @@
                 
                 <p>The main features of the package are:</p>
                 
+                
                 <ul>
                 
                 <li><p>The type of data that can be modeled are:</p></li>
                 <ul>
-                    <li>   spatial data</li>
-                    <li>   space time data with fixed location spatial sites</li>
-                    <li>   space time data with dynamical location spatial sites</li>
-                    <li>   bivariate spatial data with fixed location spatial sites</li>
-                    <li>   bivariate spatial data with different location spatial sites</li>
+                    <li>spatial data</li>
+                    <li>space time data with  (possibly) spatial location sites changing over time</li>
+                    <li>bivariate spatial data with (possibly) different location  sites</li>
                 </ul>
                 <li><p>Data can be defined on euclidean space or on a sphere of arbitrary radius</p></li>
                 <li><p>The random fields can have the following marginal distributions:</p></li>
                 
                 <ul>
+                    <!--
                     <li>   On the real line</li>
                     <li>   Gaussian</li>
                     <li>   Skew-Gaussian</li>
@@ -170,13 +170,33 @@
                     <li>   On bounded support</li>
                     <li>   Uniform  (under development)</li>
                     <li>   Wrapped-Gaussian for directional data</li>
+                     -->
+                    
+                    <li>Gaussian</li>
+                    <li>Skew-Gaussian</li>
+                    <li>Student T</li>
+                    <li>Gamma</li>
+                    <li>Weibull</li>
+                    <li>LogGaussian</li>
+                    <li>Binomial</li>
+                    <li>Negative binomial</li>
+                    <li>Wrapped-Gaussian for directional data</li>
+                    
                 </ul>
                 <li><p>Parametric models for both regression and dependence analysis through covariance models</p></li>
                 <li><p>Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern</p></li>
-                <li><p>Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)</p></li>
+                <li><p>Estimation methods:</p></li>
+                    <ul>
+                        <li>Pairwise likelihood (optional parallel computation with OpenCL)</li>
+                        <li>Full likelihood  (when feasible)</li>
+                        
+                    </ul>
                 <li><p>Optimal (linear) prediction</p></li>
                 
                 </ul>
+                
+                
+                
                 
                 <h2 id = "Tut">Tutorials and Examples</a></h2>
                 
@@ -211,11 +231,13 @@
                         <td>Analysis of (large) spatio-temporal data using Gaussian random fields</td>
                         <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/_posts/Gaussian_ST.pdf">Link</a></td>
                     </tr>
+                    <!--
                     <tr class="even">
                         <td>Gaussian</td>
                         <td>Analysis of spatio-temporal data with spatial locations changing over time using Gaussian random fields</td>
                         <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/_posts/Gaussian_ST_dyn.pdf">Link</a></td>
                     </tr>
+                     -->
                 </table>
                 
                 
