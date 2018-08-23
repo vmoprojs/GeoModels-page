@@ -1,0 +1,355 @@
+<!--https://www.w3schools.com/html/html_layout.asp -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CSS Template</title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                    * {
+                        box-sizing: border-box;
+                    }
+                
+                body {
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+                
+                /* Style the header */
+                header {
+                    background-color: #efefef;
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 20px;
+                    color: black;
+                    height: 400px;
+                }
+                
+                /* Create two columns/boxes that floats next to each other */
+                nav {
+                    float: left;
+                    width: 15%;
+                    height: 3300px; /*only for demonstration, should be removed */
+                    background: #ccc;
+                    padding: 10px;
+                }
+                
+                /* Style the list inside the menu */
+                nav ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                
+                article {
+                    float: left;
+                    padding: 20px;
+                    width: 85%;
+                    background-color: #f1f1f1;
+                    height: 3300px; /* only for demonstration, should be removed */
+                }
+                
+                /* Clear floats after the columns */
+                section:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+                
+                /* Style the footer */
+                footer {
+                    background-color: #777;
+                    padding: 10px;
+                    text-align: center;
+                    color: white;
+                }
+                
+                /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+                @media (max-width: 600px) {
+                    nav, article {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+                </style>
+    </head>
+    <body>
+        
+        
+        <header>
+            <h2 id = "Home">GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis</h2>
+            <img src="Figures/header.png" alt="header" width="700" height="300">
+        </header>
+        
+        <section>
+            <nav>
+                <ul>
+                    <li><a href="#Tut">Tutorials and Examples</a></li>
+                    <li><a href="#Res">Resources and Download</a></li>
+                    <li><a href="#Inst">Installation Instructions</a></li>
+                    <li><a href="#Cit">Package Citation</a></li>
+                    <li><a href="#Ab">About the authors</a></li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1> GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis </h1>
+                
+                
+                
+                <p>The GeoModels provides a set of procedures for simulation,  estimation  and prediction of spatio-temporal random fields.</p>
+                
+                
+                <p>The main features of the package are:</p>
+                
+                <ul>
+                
+                <li><p>The type of data that can be modeled are:</p></li>
+                <ul>
+                    <li>   spatial data</li>
+                    <li>   space time data with fixed location spatial sites</li>
+                    <li>   space time data with dynamical location spatial sites</li>
+                    <li>   bivariate spatial data with fixed location spatial sites</li>
+                    <li>   bivariate spatial data with different location spatial sites</li>
+                </ul>
+                <li><p>Data can be defined on euclidean space or on a sphere of arbitrary radius</p></li>
+                <li><p>The random fields can have the following marginal distributions:</p></li>
+                
+                <ul>
+                    <li>   On the real line</li>
+                    <li>   Gaussian</li>
+                    <li>   Skew-Gaussian</li>
+                    <li>   Student T</li>
+                    <li>   Two Piece T</li>
+                    <li>   Two Piece Gaussian</li>
+                    <li>   Logistic</li>
+                    <li>   On the positive real line</li>
+                    <li>   Gamma</li>
+                    <li>   Weibull</li>
+                    <li>   LogLogistic (under development)</li>
+                    <li>   LogGaussian</li>
+                    <li>   On positive natural numbers</li>
+                    <li>   binomial</li>
+                    <li>   negative binomial</li>
+                    <li>   On bounded support</li>
+                    <li>   Uniform  (under development)</li>
+                    <li>   Wrapped-Gaussian for directional data</li>
+                </ul>
+                <li><p>Parametric models for both regression and dependence analysis through covariance models</p></li>
+                <li><p>Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern</p></li>
+                <li><p>Estimation methods:  Pairwise likelihood,  full likelihood  (when feasible)</p></li>
+                <li><p>Optimal (linear) prediction</p></li>
+                
+                </ul>
+                
+                <h2 id = "Tut">Tutorials and Examples</a></h2>
+                
+                
+                <h3> Spatial Data</h3>
+                
+                <table border="1">
+                    <tr class="header">
+                        <th>Distribution</th>
+                        <th>Description</th>
+                        <th>Link</th>
+                    </tr>
+                    <tr class="odd">
+                        <td>Weibull</td>
+                        <td>Analysis of positive spatial data using Weibull random fields</td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/_posts/tut_weib.pdf">Link</a></td>
+                    </tr>
+                </table>
+                
+                <h3> SpatioTemporal Data</h3>
+                
+                <table border="1">
+                    
+                    <tr class="header">
+                        <th>Distribution</th>
+                        <th>Description</th>
+                        <th>Link</th>
+                    </tr>
+                    
+                    <tr class="odd">
+                        <td>Gaussian</td>
+                        <td>Analysis of (large) spatio-temporal data using Gaussian random fields</td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/_posts/Gaussian_ST.pdf">Link</a></td>
+                    </tr>
+                    <tr class="even">
+                        <td>Gaussian</td>
+                        <td>Analysis of spatio-temporal data with spatial locations changing over time using Gaussian random fields</td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/_posts/Gaussian_ST_dyn.pdf">Link</a></td>
+                    </tr>
+                </table>
+                
+                
+                
+                
+                
+                <h2 id = "Res">Resources and Download</h2>
+                
+                <p>Latest binaries and sources for GeoModels are availables from <a href="https://github.com/vmoprojs/GeoModels"> GitHub repository:</a></p>
+                
+                <ul>
+                    <li><a href = "https://github.com/vmoprojs/GeoModels"> GeoModels Package sources</a> for any platform</li>
+                    <li><a href = "https://github.com/vmoprojs/GeoModels-OCL">GeoModels OpenCL</a> for OX only</li>
+                    <li><a href = "https://github.com/vmoprojs/GeoModels/blob/master/GeoModels-manual.pdf">Reference Manual</a> </li>
+                </ul>
+                
+                
+                
+                <h2 id = "Inst">Installation Instructions</h2>
+                
+                
+                <p>We currently are loaded in Github only. This means that for <code>GeoModels</code> installation you will need to previously install <a href = "https://cran.r-project.org/web/packages/devtools/index.html"><code>devtools</code></a> package if you do not have it installed yet:</p>
+                
+                <!--
+                 <code>
+                    <p>install.packages(devtools)<br>
+                    library(devtools)</p>
+                </code>
+                 -->
+                
+                <table style="width:90%" border="1", bordercolor = "#a7a7a7">
+                    
+                    <tr>
+                        <td bgcolor="#fff"><code>
+                            <p>install.packages(devtools)<br>
+                            library(devtools)</p>
+                        </code></td>
+                    </tr>
+                </table>
+                
+                <p><code>devtools</code> lets you install packages from github since they need to be installed from source code.</p>
+                
+                
+                <p>We have developed two GeoModels version, one <i>standard</i> version and one that uses the <code>OpenCL</code> framework for parallel computing. The standard version can be installed in any operating system: Windows, OSX and Linux,</p>
+                
+                <!--
+                <code>
+                    install_github("vmoprojs/GeoModels")<br>
+                    library(GeoModels)<br>
+                </code>
+                 -->
+                
+                <table style="width:90%" border="1", bordercolor = "#a7a7a7">
+                    
+                    <tr>
+                        <td bgcolor="#fff"><code>
+                            <p>install_github("vmoprojs/GeoModels")<br>
+                            library(GeoModels)<br></p>
+                        </code></td>
+                    </tr>
+                </table>
+                
+                <p>and you are good to go.</p>
+                
+                </p>The OpenCL <code>GeoModels</code> version is currently supported for <b>OSX only</b>. It is installed with this code:</p>
+                
+                <!--
+                <code>
+                    install_github("vmoprojs/GeoModels-OCL")<br>
+                    library(GeoModels)<br>
+                </code>
+                -->
+                
+                <table style="width:90%" border="1", bordercolor = "#a7a7a7">
+                    
+                    <tr>
+                        <td bgcolor="#fff"><code>
+                            <p>install_github("vmoprojs/GeoModels-OCL")<br>
+                            library(GeoModels)<br></p>
+                        </code></td>
+                    </tr>
+                </table>
+                
+                
+                <h2 id = "Cit">Package Citation</h2>
+                
+                <p>Once you have installed <code>GeoModels</code>, you can have a BibTex citation with <code>citation("GeoModels")</code> and get:</p>
+                
+                <!--
+                <code>
+                    To cite package ‘GeoModels’ in publications use:<br>
+                    
+                    Moreno Bevilacqua and Víctor Morales-Oñate (2018). GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis.<br>
+                    R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/<br><br>
+                    
+                    A BibTeX entry for LaTeX users is<br>
+                    
+                    @Manual{GM2018,<br>
+                    title = {GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis},<br>
+                    author = {Bevilacqua, M.  and Morales-O{\~n}ate, V.},<br>
+                    year = {2018},<br>
+                    note = {R package version 1.0.3-4},<br>
+                    url = {https://vmoprojs.github.io/GeoModels-page/},<br>
+                    }
+                </code>
+                -->
+                
+                <table style="width:90%" border="1", bordercolor = "#a7a7a7">
+                    
+                    <tr>
+                        <td bgcolor="#fff"><code>
+                            <p>To cite package ‘GeoModels’ in publications use:<br>
+                            
+                            Moreno Bevilacqua and Víctor Morales-Oñate (2018). GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis.<br>
+                            R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/<br><br>
+                            
+                            A BibTeX entry for LaTeX users is<br>
+                            
+                            @Manual{GM2018,<br>
+                            title = {GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis},<br>
+                            author = {Bevilacqua, M.  and Morales-O{\~n}ate, V.},<br>
+                            year = {2018},<br>
+                            note = {R package version 1.0.3-4},<br>
+                            url = {https://vmoprojs.github.io/GeoModels-page/},<br>
+                            }</p>
+                        </code></td>
+                    </tr>
+                </table>
+                
+                <h2 id = "Ab">About the authors</h2>
+                
+                
+                <h4 id="heading5">Moreno Bevilacqua</h4>
+                
+                <img src="Figures/moreno.jpg" alt="Moreno" width="260" height="400">
+                    
+                    <h5 id="heading5">Chile</h5>
+                    
+                    <p>Moreno Bevilacqua is an Associate Professor at the Statistics Department of University of Valparaiso from August 2012. He has carried out research as: a post-doc at the Department of Statistics, University Ca' Foscari of Venice from May 2008 to December 2010, a research fellow at the University of Bergamo from January 2011 to July 2012.<br>
+                    He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 from the University of Padua. His main research interests concern theory, methodology and applications in multivariate spatio-temporal statistics.</p>
+                    
+                    
+                    
+                    <a title="Personal site" href="https://sites.google.com/a/uv.cl/moreno-bevilacqua/">Personal site</a>
+                    
+                    
+                    
+                    
+                    <h4 id="heading5">Víctor Morales-Oñate</h4>
+                    
+                    
+                    <img src="Figures/vmo.jpg" alt="VMO" width="320" height="250">
+                        
+                        
+                        <h5 id="heading5">Pelileo-Ecuador</h5>
+                        
+                        
+                        <p>Víctor is a PhD candidate of the statistics programme at the University of Valparaíso. His main research interests concern computational spatial (temporal) geostatistics applications.
+                        <br>
+                        Other interests include cuantitative economy, fraud detection models, clustering and philosophy, particularly, Bertrand Russell's political ideas.</p>
+                        
+                        <a title="Personal site" href="https://github.com/vmoprojs">Personal site</a>
+                        <br>
+                        <br>
+                        <p style="font-size:160%"; align="center";> <a href="#Home">HOME<a></p>
+            </article>
+        </section>
+        
+        <footer>
+            <p>GeoModels, last update: 22-08-2018</p>
+            <img src="Figures/under_construction.jpg" alt="VMO" width="200" height="60">
+        </footer>
+        
+    </body>
+</html>
