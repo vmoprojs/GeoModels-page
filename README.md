@@ -51,4 +51,4 @@ The main features of the package are:
 
 -   Visit our website for more information: [link](https://vmoprojs.github.io/GeoModels-page/)
 
--   Please report any bugs, suggestions and/or improvements: [link](https://github.com/vmoprojs/GeoModels/issues)
+-   Please report any bugs, suggestions and/or improvements: [link](https://github.com/vmoprojs/GeoModels-page/issues)
