@@ -6,7 +6,7 @@
 ###############################################################
 rm(list=ls())
 require(devtools)
-#install_github("vmoprojs/GeoModels")
+install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 require(sn)
