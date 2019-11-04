@@ -1,4 +1,6 @@
 rm(list=ls())
+require(devtools)
+install_github("vmoprojs/GeoModels")
 library(GeoModels)
 library(fields)
 set.seed(881)
