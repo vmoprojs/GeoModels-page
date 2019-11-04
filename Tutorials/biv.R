@@ -1,6 +1,6 @@
 rm(list=ls())
-#require(devtools)
-#install_github("vmoprojs/GeoModels -OCL") 
+require(devtools)
+install_github("vmoprojs/GeoModels-OCL") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
