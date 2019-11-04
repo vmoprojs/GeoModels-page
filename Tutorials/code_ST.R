@@ -49,7 +49,7 @@ fixed=list(nugget=nugget,power2_s=4,power2_t=4)
 fit = GeoFit(data=ss1,coordx=coords, coordt=coordt, corrmodel=corrmodel,
             maxdist=0.04,maxtime=1,X=X,
             optimizer="BFGS",
-            start=start,fixed=fixed)
+            start=start,fixed=fixed,GPU=0,local=c(1,1))
 fit
 
 # computing residuals
