@@ -1,7 +1,7 @@
 rm(list=ls())
 
 require(devtools)
-install_github("vmoprojs/GeoModels -OCL") 
+install_github("vmoprojs/GeoModels-OCL") 
 require(GeoModels)
 require(fields)
 
