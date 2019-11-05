@@ -1,3 +1,8 @@
+#########################################################
+#########################################################
+# code fot the tutorial on Weibull  random fields analysis
+#########################################################
+#########################################################
 rm(list=ls())
 require(devtools)
 install_github("vmoprojs/GeoModels")
@@ -17,14 +22,20 @@ plot(coords,pch=20,xlab="",ylab="")
 
 
 X=cbind(rep(1,N),runif(N)) # matrix covariates 
+
+NuisParam(model,num_betas=2)
+
 mean = -0.3; mean1 =0.5 # regression parameters
+shape =2 # shape of the weibull RF 
+nugget=0 # nugget parameter
+
+
 
 corrmodel = "Wend0" ## correlation model and parameters 
 scale = 0.2
 power2 =4
 
-shape =2 # shape of the weibull RF 
-nugget=0 # nugget parameter
+
 
 param=list(mean=mean,mean1=mean1,sill=1-nugget, nugget=nugget, scale=scale ,power2=power2 ,shape=shape)
 set.seed(312)
@@ -44,6 +55,7 @@ optimizer="BFGS",start=start,fixed=fixed,maxdist=0.02)
 res=GeoResiduals(fit) # computing residuals
 
 #### checking marginal assumptions
+shape=fit$param["shape"]
 probabilities = (1:N)/(N+1)
 weibull.quantiles = qweibull(probabilities , shape=shape , scale = 1/(gamma(1+1/shape)))
 plot(sort(weibull.quantiles), sort(c(res$data)), xlab="",ylab="",main="Weibull qq-plot") 
