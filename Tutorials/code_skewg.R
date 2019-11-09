@@ -6,7 +6,7 @@
 ###############################################################
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels")
+#install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 require(sn)
@@ -14,13 +14,16 @@ model="SkewGaussian"
 set.seed(89)
 
 
-# Define the spatial-coordinates of the points:
+
+
 N=1200
-x = runif(N); y = runif(N)
+# Define the spatial-coordinates of the points:
+x = runif(N)
+y = runif(N)
 coords=cbind(x,y)
 X=cbind(rep(1,N),runif(N))
 
-####  nuisance parameters of the Weibull model
+
 NuisParam(model)
 #### mean and covariance parameters ###
 mean= 0.5
@@ -30,13 +33,14 @@ nugget=0
 skew=-3
 
 
-#################
 
 corrmodel = "GenWend"    ## correlation model and parameters
-CorrParam("GenWend")
 scale = 0.2
 smooth=1
 power2=5
+
+#################
+CorrParam("GenWend")
 
 
 #############################
@@ -47,7 +51,8 @@ param=list(mean=mean,mean1=mean1,sill=sill,
 data = GeoSim(coordx=coords, corrmodel=corrmodel,model=model,X=X,
               sparse=TRUE,param=param)$data
 cc= GeoCovmatrix(coordx=coords, corrmodel=corrmodel,model=model,
-             sparse=TRUE,X=X, param=param)
+             sparse=TRUE,X=X,
+              param=param)
 
 #is.spam(cc$covmatrix)
 cc$nozero
@@ -62,27 +67,26 @@ fixed=list(power2=power2,nugget=nugget,smooth=smooth)
 fit=GeoFit(data=data,coordx=coords,corrmodel=corrmodel,X=X,
                     maxdist=0.04,model=model,
                     start=start,fixed=fixed)
-
+               # GPU=0,local=c(1,1))
 fit
 
 
-#############################
-##### computing residuals
-#############################
+
+
 res=GeoResiduals(fit)
 
 probabilities = (1:N)/(N+1)
-skgauss.quantiles = qsn(probabilities, xi=0, omega=1,
-     alpha=as.numeric(fit$param['skew']/fit$param['sill']^0.5))
-plot(sort(skgauss.quantiles), sort(c(res$data)),xlab="",ylab="",main="Skew Gaussian qq-plot")
+omega=sqrt((fit$param['skew']^2+fit$param['sill'])/fit$param['sill'])
+alpha=fit$param['skew']/fit$param['sill']^0.5
+skgauss.quantiles = qsn(probabilities, xi=0, 
+     omega=,as.numeric(omega),alpha=as.numeric(alpha))
+plot(sort(skgauss.quantiles), sort(c(res$data)),
+   xlab="",ylab="",main="Skew Gaussian qq-plot")
 abline(0,1)
 
- ### empirical semivariogram
-vario = GeoVariogram(data=res$data,coordx=coords,maxdist=0.5) 
-# comparing  empirical semivariogram with theoretical semivariogram
-GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)  
-
-
+####
+vario = GeoVariogram(data=res$data,coordx=coords,maxdist=0.5)
+GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)
 
 
 #############################
