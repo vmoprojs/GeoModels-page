@@ -6,13 +6,12 @@
 ###############################################################
 rm(list=ls())
 require(devtools)
-#install_github("vmoprojs/GeoModels")
+install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 require(sn)
 model="SkewGaussian"
 set.seed(89)
-
 
 
 
@@ -22,7 +21,6 @@ x = runif(N)
 y = runif(N)
 coords=cbind(x,y)
 X=cbind(rep(1,N),runif(N))
-
 
 NuisParam(model)
 #### mean and covariance parameters ###
@@ -54,9 +52,8 @@ cc= GeoCovmatrix(coordx=coords, corrmodel=corrmodel,model=model,
              sparse=TRUE,X=X,
               param=param)
 
-#is.spam(cc$covmatrix)
-cc$nozero
 
+cc$nozero
 
 
 #############################
@@ -67,30 +64,18 @@ fixed=list(power2=power2,nugget=nugget,smooth=smooth)
 fit=GeoFit(data=data,coordx=coords,corrmodel=corrmodel,X=X,
                     maxdist=0.04,model=model,
                     start=start,fixed=fixed)
-               # GPU=0,local=c(1,1))
+
 fit
 
 
-
-
 res=GeoResiduals(fit)
-
-probabilities = (1:N)/(N+1)
-omega=sqrt((fit$param['skew']^2+fit$param['sill'])/fit$param['sill'])
-alpha=fit$param['skew']/fit$param['sill']^0.5
-skgauss.quantiles = qsn(probabilities, xi=0, 
-     omega=,as.numeric(omega),alpha=as.numeric(alpha))
-plot(sort(skgauss.quantiles), sort(c(res$data)),
-   xlab="",ylab="",main="Skew Gaussian qq-plot")
-abline(0,1)
-
+GeoQQ(res)
 ####
 vario = GeoVariogram(data=res$data,coordx=coords,maxdist=0.5)
 GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)
 
-
 #############################
-## prediction: simple kriging
+## prediction
 #############################                    
 # locations to predict
 xx=seq(0,1,0.012)
@@ -102,7 +87,7 @@ param_est=as.list(c(fit$param,fixed))
 pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred,corrmodel=corrmodel,model=model,mse=TRUE,X=X,Xloc=Xloc,
        sparse=TRUE,param= param_est)
 
- colour = rainbow(100)
+colour = rainbow(100)
 par(mfrow=c(1,3))
 #### map of simulated data
 quilt.plot(x, y, data,col=colour,main="Data")

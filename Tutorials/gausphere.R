@@ -7,12 +7,7 @@ library(globe)
 library(fields)
 library(sphereplot)
 set.seed(1891)
-################################################################
-###
-### Example 8. Simulation of a Gaussian RF 
-###  with a Wend0 correlation on the planet earth
-###
-###############################################################
+
 
 
 
@@ -22,19 +17,16 @@ coords=pointsphere(NN,c(-180,180),c(-90,90),c(1,1))[,1:2]
 globeearth(eye=place("newyorkcity"))
 globepoints(loc=coords,pch=20,cex=0.4)
 
-
 globeearth(eye=place("everest"))
 globepoints(loc=coords,pch=20,cex=0.4)
 
 
 corrmodel = "Smoke"    ## correlation model and parameters
-CorrParam(corrmodel)
 scale=0.3
 smooth=0.5
-
-sill=1;nugget=0;mean=0
-
-
+sill=1
+nugget=0
+mean=0
 
 ###  simulation using geodesic distance
 param=list(mean=mean, sill=sill, nugget=nugget, smooth=smooth,scale=scale)
@@ -65,8 +57,6 @@ fit_geo_ml$param
 fit_geo_pl$param
 #---------------------------------------------------
 
-
-
 chor_ds=2*sin(geod_ds/2)
 max_chor=max(chor_ds)
 ## maximum pairwise likelihood estimation using chordal  distance
@@ -76,21 +66,15 @@ fit_chor_pl <- GeoFit(data=data,coordx=coords,corrmodel="Matern",
 print(fit_chor_pl)
 ################################
 
-
-
 ## sinusoidal   projection
 prj=mapproject(coords[,1], coords[,2], projection="sinusoidal")
 coords_prj=cbind(prj$x,prj$y)
+
 
 sinusoidal.proj = map(database= "world", ylim=c(-90,90), xlim=c(-180,180),
  col="grey80", fill=TRUE, plot=FALSE, projection="sinusoidal")
  map(sinusoidal.proj)
 points(coords_prj,pch=20,cex=0.4)
-
-
-
-
-
 
 eucl_ds=dist(coords_prj)
 max_eucl=max(eucl_ds)
@@ -107,6 +91,7 @@ fit_eucl_pl$param
 
 
 
+
 boxplot(c(geod_ds),c(chor_ds),c(eucl_ds))
 
 
@@ -114,21 +99,12 @@ boxplot(c(geod_ds),c(chor_ds),c(eucl_ds))
 res=GeoResiduals(fit_geo_pl)
 
 ### checking model assumptions: marginal distribution
-
-qqnorm(res$data)
-abline(0,1)
+GeoQQ(res)
 
 
 ### checking model assumptions: ST variogram model
 vario = GeoVariogram(data=res$data,coordx=coords,maxdist=max_geod/2,distance="Geod",radius=1)
 GeoCovariogram(res,vario=vario,show.vario=TRUE,pch=20)
-
-
-
-
-
-
-
 
 ########### predictiob using geodesic distance
 loc_to_pred=as.matrix(expand.grid(seq(-180,180,2),seq(60,90,1)))
@@ -142,17 +118,13 @@ predictions=cbind(loc_to_pred,pr_geo$pred,pr_geo$mse)
 head(predictions)
 
 
+
 globeearth(eye=place("newyorkcity"))
 globepoints(loc=loc_to_pred,pch=20,col =  heat.colors(length(pr_geo$pred),alpha=0.1)[rank(pr_geo$pred)])
 
 
 globeearth(eye=place("newyorkcity"))
 globepoints(loc=loc_to_pred,pch=20,col =  cm.colors(length(pr_geo$mse),alpha=0.1)[rank(pr_geo$mse)])
-
-
-
-
-
 
 
 
