@@ -1,33 +1,31 @@
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels-OCL") 
+install_github("vmoprojs/GeoModels") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
-set.seed(12)
+set.seed(24)
 
 
-NN=800 # number of spatial locations 
+NN=500 # number of spatial locations 
 x = runif(NN, 0, 1); 
 y = runif(NN, 0, 1) 
 coords=cbind(x,y) 
 
-corrmodel="Bi_Matern"
-
 
 
 ## setting parameters
-mean_1 = 0; mean_2= 0
-
+mean_1 = 2; mean_2= -1
 nugget_1 =0;nugget_2=0
-
 sill_1 =0.5; sill_2 =1; 
 
 ### correlation parameters
+corrmodel="Bi_Matern"
 CorrParam("Bi_Matern")
-scale_1=0.2/3; scale_2=0.15/3; scale_12=0.5*(scale_2+scale_1)
+
+scale_1=0.2/3; scale_2=0.15/3; scale_12=0.5*(scale_2+scale_1) 
 smooth_1=smooth_2=smooth_12=0.5
-pcol=-0.4
+pcol = -0.4
 
 param= list(nugget_1=nugget_1,nugget_2=nugget_2,
 	        sill_1=sill_1,sill_2=sill_2,
@@ -45,50 +43,56 @@ ss1 = GeoSim(coordx=coords, corrmodel=corrmodel,model=model,param=param)$data
 dim(ss1)
 cc = GeoCovmatrix(coordx=coords, corrmodel=corrmodel,
 	          model=model,param=param)
-cc$covmatrix[1:5,1:5]
+cc$covmatrix[1:4,1:4]
 
 
 
 
 
-fixed=list(nugget_1=nugget_1,nugget_2=nugget_2, mean_1=mean_1,mean_2=mean_2,
+fixed=list(nugget_1=nugget_1,nugget_2=nugget_2, 
 	     smooth_1=smooth_1, smooth_2=smooth_2,smooth_12=smooth_12)
 
-start=list(  sill_1=sill_1,sill_2=sill_2,scale_1=scale_1,scale_2=scale_2,scale_12=scale_12, pcol=pcol)
+start=list( mean_1=mean_1,mean_2=mean_2, sill_1=sill_1,sill_2=sill_2,
+	      scale_1=scale_1,scale_2=scale_2,scale_12=scale_12, pcol=pcol)
 
-## estimation with maximum likelihood can be time consuming...
-#fit = GeoFit(data=ss1,coordx=coords, corrmodel=corrmodel,
-#	likelihood="Full",type="Standard",optimizer="BFGS", 
-#	start=start,fixed=fixed)
+## estimation with maximum likelihood 
+fit = GeoFit(data=ss1,coordx=coords, corrmodel=corrmodel,
+	likelihood="Full",type="Standard",optimizer="BFGS", 
+	lower=lower,upper=upper,
+	start=start,fixed=fixed)
+
+fit
+
+
 
 fit_pl = GeoFit(data=ss1,coordx=coords, corrmodel=corrmodel,
  maxdist=c(0.1,0.1,0.1),likelihood="Marginal",type="Pairwise",
  optimizer="BFGS", start=start, fixed=fixed)
 
+fit_pl
+
+res=GeoResiduals(fit_pl)
+
+GeoQQ(res)
 
 
-
-
-
-########################################
 ### checking model assumptions: ST variogram model
-########################################
-vario = GeoVariogram(data=ss1,coordx=coords, bivariate=TRUE, maxdist=c(0.6,0.6,0.6))
+vario = GeoVariogram(data=ss1,coordx=coords, bivariate=TRUE, maxdist=c(0.4,0.4,0.4))
 GeoCovariogram(fit_pl,vario=vario,show.vario=TRUE,pch=20)
+
+
 
 ####################
 ##### kriging ###### 
 ####################
-
-## defining a regular grid 
 xx=seq(0,1,0.012)
 loc_to_pred=as.matrix(expand.grid(xx,xx))
 
+
 param_est=as.list(c(fit_pl$param,fixed))
-###  prediction of first component
 pr1 = GeoKrig(data=ss1,coordx=coords,  corrmodel=corrmodel,which=1,
 	          model=model,mse=TRUE,loc=loc_to_pred,param=param_est)
-###  prediction of second component
+
 pr2 = GeoKrig(data=ss1,coordx=coords,  corrmodel=corrmodel,which=2,
 	          model=model,mse=TRUE,loc=loc_to_pred,param=param_est)
 
