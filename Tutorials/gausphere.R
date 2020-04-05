@@ -38,9 +38,17 @@ data = GeoSim(coordx=coords, corrmodel=corrmodel, param=param,
 fixed<-list(nugget=nugget)
 start<-list(mean=mean,scale=scale,sill=sill,smooth=smooth)
 
+optimizer="nlminb"
+I=Inf
+upper<-list(mean=I,scale=I,sill=I,smooth=I)
+lower<-list(mean=-I,scale=0,sill=0,smooth=0)
+
+
+
 ## maximum likelihood estimation  using geodesic distance: can be time consuming...
 fit_geo_ml <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel, 
               likelihood="Full",type="Standard",
+              optimizer=optimizer,lower=lower,upper=upper,
               start=start,fixed=fixed,distance="Geod",radius=1)
 
 
@@ -49,6 +57,7 @@ max_geod=max(geod_ds)
 ## maximum pairwise likelihood estimation using geodesic distance
 fit_geo_pl <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel, 
              likelihood="Marginal",type="Pairwise",maxdist=max_geod/40,
+             optimizer=optimizer,lower=lower,upper=upper,
              start=start,fixed=fixed,distance="Geod",radius=1)
 
 
@@ -62,8 +71,8 @@ max_chor=max(chor_ds)
 ## maximum pairwise likelihood estimation using chordal  distance
 fit_chor_pl <- GeoFit(data=data,coordx=coords,corrmodel="Matern", 
                  likelihood="Marginal",type="Pairwise",maxdist=max_chor/40,
+                 optimizer=optimizer,lower=lower,upper=upper,
                     start=start,fixed=fixed,distance="Chor",radius=1)
-print(fit_chor_pl)
 ################################
 
 ## sinusoidal   projection
@@ -82,6 +91,7 @@ max_eucl=max(eucl_ds)
 distance="Eucl"
 fit_eucl_pl <- GeoFit(data=data,coordx=coords_prj,corrmodel="Matern", 
                     maxdist=max_eucl/40,likelihood="Marginal",type="Pairwise",
+                    optimizer=optimizer,lower=lower,upper=upper,
                     start=start,fixed=fixed,distance=distance,radius=1)
 
 
