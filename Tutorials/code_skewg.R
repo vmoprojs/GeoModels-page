@@ -11,7 +11,7 @@ require(GeoModels)
 require(fields)
 require(sn)
 model="SkewGaussian"
-set.seed(89)
+set.seed(8)
 
 
 
@@ -47,7 +47,7 @@ CorrParam("GenWend")
 param=list(mean=mean,mean1=mean1,sill=sill,
 	     nugget=nugget,scale=scale,skew=skew,power2=power2,smooth=smooth)
 data = GeoSim(coordx=coords, corrmodel=corrmodel,model=model,X=X,
-              sparse=TRUE,param=param)$data
+              param=param)$data
 cc= GeoCovmatrix(coordx=coords, corrmodel=corrmodel,model=model,
              sparse=TRUE,X=X,
               param=param)
