@@ -1,6 +1,6 @@
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels")
+#install_github("vmoprojs/GeoModels")
 require(GeoModels);
 require(fields);
 require(hypergeo);
@@ -77,16 +77,13 @@ optimizer=optimizer,
 lower=lower,upper=upper,
 maxdist=maxdist,X=X,start=start,fixed=fixed, model = "Gaussian_misp_StudentT")
 
-fit3$param['sill']=fit3$param['sill']*(DF-2)/DF
-
 
 fit2$param
 fit3$param
 
-
-
 res=GeoResiduals(fit2) # computing residuals
 GeoQQ(res)
+
 
 vario <- GeoVariogram(data=res$data,coordx=coords,maxdist=0.4) 
 GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)
