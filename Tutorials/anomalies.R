@@ -57,7 +57,7 @@ start=list(mean=mean(z),sill=var(z),nugget=0.10,scale=200)
 fixed=list(smooth=0,power2=1/3.5)
 pcl1=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
   model="Gaussian",
- maxpoints=10,optimizer="BFGS",
+ neighb=10,optimizer="BFGS",
       start=start,fixed=fixed) 
 pcl1
 ###########
@@ -67,7 +67,7 @@ fixed=list(smooth=0,power2=1/3.5)
 
 pcl2=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
   likelihood="Marginal",type="Pairwise",model=model,
-  maxpoints=10,optimizer="BFGS",start=start,fixed=fixed)
+  neighb=10,optimizer="BFGS",start=start,fixed=fixed)
 pcl2
 
 
@@ -113,8 +113,8 @@ matrix2$nozero
 ###### cross  validation
 KK=100
 seed=9
-a1=GeoCV(pcl1, K=KK, n.fold=0.25,seed=seed,local=TRUE,maxpoints=100)
-a2=GeoCV(pcl2, K=KK, n.fold=0.25,seed=seed,local=TRUE,maxpoints=100)
+a1=GeoCV(pcl1, K=KK, n.fold=0.25,seed=seed,local=TRUE,neighb=100)
+a2=GeoCV(pcl2, K=KK, n.fold=0.25,seed=seed,local=TRUE,neighb=100)
 mean(a1$rmse);mean(a2$rmse);
 mean(a1$mae);mean(a2$mae);
 
@@ -131,11 +131,11 @@ coords_tot=as.matrix(expand.grid(lon_seq,lat_seq))
 gr.in <- locations.inside(coords_tot, SpP)
 
 pr1<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="Gaussian",sparse=TRUE,maxpoints=100,
+  model="Gaussian",sparse=TRUE,neighb=100,
   param=as.list(c(pcl1$param,pcl1$fixed)),data=z)
 
 pr2<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="SkewGaussian",sparse=TRUE,maxpoints=100,
+  model="SkewGaussian",sparse=TRUE,neighb=100,
   param=as.list(c(pcl2$param,pcl2$fixed)),data=z)
 
 par(mfrow=c(2,2))
