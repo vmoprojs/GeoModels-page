@@ -1,6 +1,6 @@
 rm(list=ls())
 require(devtools)
-#install_github("vmoprojs/GeoModels")
+install_github("vmoprojs/GeoModels")
 require(GeoModels);
 require(fields);
 require(hypergeo);
@@ -8,7 +8,7 @@ require(limma);
 model="StudentT"; # model name in the GeoModels package
 
 
- set.seed(199);
+ set.seed(989);
  N=600;
  coords=cbind(runif(N),runif(N));
 
@@ -44,12 +44,11 @@ I=Inf;
 lower1<-list(mean=-I, mean1=-I,scale=0,sill=0,df=0);
 upper1<-list(mean=I, mean1=I,scale=I,sill=I,df=0.5);
 
-maxdist=0.04;
+
 
 fit1 <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel,
-optimizer=optimizer,
-lower=lower1,upper=upper1,
-maxdist=maxdist,X=X,start=start1,fixed=fixed1, model = model);
+optimizer=optimizer,lower=lower1,upper=upper1,
+neighb=3,X=X,start=start1,fixed=fixed1, model = model);
 
 
 
@@ -66,7 +65,7 @@ upper<-list(mean=I, mean1=I,scale=I,sill=I)
 fit2 <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,
 lower=lower,upper=upper,
-maxdist=maxdist,X=X,start=start,fixed=fixed, model = model)
+neighb=3,X=X,start=start,fixed=fixed, model = model)
 
 
 fit2$param
@@ -75,7 +74,7 @@ fit2$param
 fit3 <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,
 lower=lower,upper=upper,
-maxdist=maxdist,X=X,start=start,fixed=fixed, model = "Gaussian_misp_StudentT")
+neighb=3,X=X,start=start,fixed=fixed, model = "Gaussian_misp_StudentT")
 
 
 fit2$param

@@ -23,7 +23,7 @@ coords=cbind(x,y)
 X=cbind(rep(1,N),runif(N))
 
 NuisParam(model)
-#### mean and covariance parameters ###
+####regression mean and covariance parameters ###
 mean= 0.5
 mean1=-0.5
 sill=1.5
@@ -48,11 +48,10 @@ param=list(mean=mean,mean1=mean1,sill=sill,
 	     nugget=nugget,scale=scale,skew=skew,power2=power2,smooth=smooth)
 data = GeoSim(coordx=coords, corrmodel=corrmodel,model=model,X=X,
               param=param)$data
+## covariance matrix
 cc= GeoCovmatrix(coordx=coords, corrmodel=corrmodel,model=model,
              sparse=TRUE,X=X,
               param=param)
-
-
 cc$nozero
 
 
@@ -62,7 +61,7 @@ cc$nozero
 start=list(sill=sill,mean=mean,mean1=mean1,scale=scale,skew=skew)
 fixed=list(power2=power2,nugget=nugget,smooth=smooth)
 fit=GeoFit(data=data,coordx=coords,corrmodel=corrmodel,X=X,
-                    maxdist=0.04,model=model,
+                    neighb=3,model=model,
                     start=start,fixed=fixed)
 
 fit
