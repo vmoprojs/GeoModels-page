@@ -89,10 +89,10 @@ pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred,corrmodel=corrmodel,model=mo
 colour = rainbow(100)
 par(mfrow=c(1,3))
 #### map of simulated data
-quilt.plot(x, y, data,col=colour,main="Data")
+quilt.plot(coords, data,col=colour,main="Data")
 map=matrix(pr$pred,ncol=length(xx))
 ## prediction map
-image.plot(xx, xx, map,col=colour,xlab="",ylab="",main="Simple Kriging ")
+quilt.plot(loc_to_pred, map,col=colour,xlab="",ylab="",main="Simple Kriging ")
 ## mse prediction map
 map_mse=matrix(pr$mse,ncol=length(xx))
-image.plot(xx, xx, map_mse,col=colour,xlab="",ylab="",main="mse ")
+quilt.plot(loc_to_pred, map_mse,col=colour,xlab="",ylab="",main="mse ")
