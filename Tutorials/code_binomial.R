@@ -5,7 +5,7 @@ require(GeoModels);
 require(fields);
 
 
- setwd("/Users/morenobevilacqua/Documents/lavoro/TEST_PACKAGE/TUTORIALS/binomial_tutorial/tex")
+ 
 
 
 
