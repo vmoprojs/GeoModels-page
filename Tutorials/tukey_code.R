@@ -1,15 +1,14 @@
 
-rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels")
+rm(list=ls());
+require(devtools); 
+#install_github("vmoprojs/GeoModels"); 
 require(GeoModels);
 require(fields);
-model="Tukeyh"; # model name in the GeoModels package
+model="Tukeyh"; # model name in the GeoModels package set.seed(989);
+set.seed(989);
 
-
- set.seed(989);
- N=600;
- coords=cbind(runif(N),runif(N));
+N=600;
+coords=cbind(runif(N),runif(N));
 
 
 
