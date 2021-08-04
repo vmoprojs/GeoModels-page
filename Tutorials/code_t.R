@@ -1,6 +1,6 @@
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels")
+#install_github("vmoprojs/GeoModels")
 require(GeoModels);
 require(fields);
 require(hypergeo);
@@ -99,14 +99,14 @@ param_est=as.list(c(fit1$param,fixed1))
 pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
      corrmodel=corrmodel,model=model,mse=TRUE,param= param_est)
 
-colour = rainbow(100)
+
 par(mfrow=c(1,3))
 #### map of  data
-quilt.plot(coords[,1], coords[,2], data,col=colour,main="Data")  
+quilt.plot(coords[,1], coords[,2], data,main="Data")  
 
 # linear kriging
 map=matrix(pr$pred,ncol=length(xx))
-image.plot(xx,xx,map,col=colour,xlab="",ylab="",main="SimpleKriging")
+image.plot(xx,xx,map,xlab="",ylab="",main="SimpleKriging")
 #associated mean squared error
 map_mse=matrix(pr$mse,ncol=length(xx))
-image.plot(xx,xx,map_mse,col=colour,xlab="",ylab="",main="MSE")
+image.plot(xx,xx,map_mse,xlab="",ylab="",main="MSE")
