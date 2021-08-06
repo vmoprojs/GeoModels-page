@@ -4,8 +4,7 @@ require(devtools);
 require(GeoModels);
 require(fields);
 
-
-###################################
+ ###################################
 #  stationary case  ####
 ###################################
 
@@ -13,7 +12,7 @@ require(fields);
 N=1000;
 set.seed(269);
 coords=cbind(runif(N),runif(N));
-plot(coords ,pch=20,xlab="",ylab="");
+#plot(coords ,pch=20,xlab="",ylab="");
 
 
 
@@ -41,9 +40,13 @@ p=pnorm(mean)
 n*p;n*p*(1-p)
 
 
-
 plot(table(data_s),ylab = "Frequency")
+
+
+
 quilt.plot(coords,data_s,nlevel=n+1,zlim=c(0,n))
+
+
 
 fit = GeoVariogram(coordx=coords,data=data_s,maxdist=0.6)
 plot(fit, xlab='h', ylab=expression(gamma(h)),
@@ -57,14 +60,16 @@ plot(fit, xlab='h', ylab=expression(gamma(h)),
 ###################################
 #  nonstationary case  #
 ###################################
-mean = 0.25 # regression paramteres 
-mean1= -0.1
+mean = 0.3 # regression paramteres 
+mean1= -0.25
 
-set.seed(130);
+set.seed(29);
 a0=rep(1,N);a1=runif(N)
 X=cbind(a0,a1); ## regression matrix
 
 n=sample(10:20,nrow(coords),replace=TRUE)
+head(n)
+
 
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, 
           smooth=smooth, sill=1)
@@ -122,10 +127,16 @@ pr=GeoKrig(data=data_ns, coordx=coords,loc=loc_to_pred,X=X,Xloc=Xloc,
 par(mfrow=c(1,3))
 #### map of  data
 nn=max(n)
+
 quilt.plot(coords, data_ns,nlevel=nn+1,zlim=c(0,nn)) 
+
 # map predictions
 map=matrix(pr$pred,ncol=length(xx))
+
 image.plot(xx,xx,map,xlab="",zlim=c(0,nn),ylab="",main="Kriging")
+
 #map MSE
 map_mse=matrix(pr$mse,ncol=length(xx))
+
 image.plot(xx,xx,map_mse,xlab="",ylab="",main="MSE")
+
