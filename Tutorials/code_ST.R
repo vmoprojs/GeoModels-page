@@ -1,13 +1,13 @@
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels-OCL") 
+#install_github("vmoprojs/GeoModels-OCL") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
 set.seed(12)
 
 
-coordt =1:40 # number of temporal instants 
+coordt =1:30 # number of temporal instants 
 T=length(coordt)
 NN=400 # number of spatial locations 
 x = runif(NN, 0, 1); 
@@ -39,14 +39,17 @@ ss1 = GeoSim(coordx=coords, coordt=coordt, corrmodel=corrmodel,X=X,sparse=TRUE,
 cc = GeoCovmatrix(coordx=coords, coordt=coordt, corrmodel=corrmodel,X=X,sparse=TRUE,
 	          model=model,param=param)
 
+
+#U=chol.spam(cc$covmatrix)
+#a=chol2inv.spam(U)
+
 cc$nozero
 
 ## estimation with pairwise likelihood
 start=list(mean=mean, mean1=mean1,scale_s=scale_s,scale_t=scale_t,sill=sill)
 fixed=list(nugget=nugget,power2_s=4,power2_t=4)
 fit = GeoFit(data=ss1,coordx=coords, coordt=coordt, corrmodel=corrmodel,
-            maxdist=0.04,maxtime=1,X=X,
-            GPU=0,local=c(1,1),
+            maxdist=0.05,maxtime=1,X=X,
             optimizer="BFGS",start=start,fixed=fixed)
 
 fit
