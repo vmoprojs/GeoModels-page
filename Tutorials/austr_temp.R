@@ -26,13 +26,13 @@ oz(states=FALSE,add=T, lwd=2) #
 
 hist(temp,main="Histogram of Maximum temperature",nclass=13)
 maxdist=max(rdist.earth(coords,miles=F,R=radius))
-fit <- GeoVariogram(coordx=coords,data=temp,distance="Geod",maxdist=maxdist/5,radius=radius)
+vario <- GeoVariogram(coordx=coords,data=temp,distance="Geod",maxdist=maxdist/5,radius=radius)
 
 GeoScatterplot(data=temp,coordx=coords,distance="Geod",maxdist=500,numbins=6)
 
 # Results:
-plot(fit$centers, fit$variograms, xlab='GC distance', ylab=expression(gamma(GC)),cex=1.5,cex.lab=1.5,
-ylim=c(0, max(fit$variograms)), pch=20,
+plot(vario, xlab='GC distance', ylab=expression(gamma(GC)),cex=1.5,cex.lab=1.5,
+ylim=c(0, max(vario$variograms)), pch=20,
 main="Semi-variogram")
 
 ########################################
@@ -132,7 +132,7 @@ v1=GeoVarestbootstrap(fit2,K=KK,optimizer=optimizer,seed=9)#Gaussian
 v2=GeoVarestbootstrap(fit4,K=KK,,optimizer=optimizer,seed=9)#T
 
 
-v1;v2
+v1$stderr;v1$claic;v1$clbic
 
 
 
@@ -166,13 +166,13 @@ pr_student2$mse
 
 
 ####  prediction performance trough cross validation
-KK=200
-d=GeoCV(fit4,K=KK,n.fold=0.2,seed=9) #  T
-e=GeoCV(fit2,K=KK,n.fold=0.2,seed=9) #gaussian
+KK=100
+e=GeoCV(fit2,K=KK,n.fold=0.2,seed=5,estimation=TRUE)  # Gaussian model
+d=GeoCV(fit4,K=KK,n.fold=0.2,seed=5,estimation=TRUE)  # t model
 
-mean(d$rmse);mean(d$mae); #  T
+
 mean(e$rmse);mean(e$mae); #  gaussian
-
+mean(d$rmse);mean(d$mae); #  T
 
 ################################################################################
 ####################  map prediction #############################

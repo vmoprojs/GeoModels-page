@@ -45,33 +45,32 @@ plot(evariog,ylim=c(0,1),pch=20,xlab="Km",ylab="Semi-variogram")
 
 
 
-CorrParam("GenWend_Matern") 
+CorrParam("Matern") 
 NuisParam("Gaussian")
 NuisParam("SkewGaussian")
 
 
-corrmodel="GenWend_Matern"
+corrmodel="Matern"
 ###########
 I=Inf
-start=list(mean=mean(z),sill=var(z),nugget=0.10,scale=200)
+start=list(mean=mean(z),sill=var(z),nugget=0.10,scale=140)
 lower=list(mean=-I,sill=0,nugget=0,scale=0)
 upper=list(mean=I,sill=I,nugget=1,scale=I)
 
-fixed=list(smooth=0,power2=1/3.5)
+fixed=list(smooth=0.5)
 pcl1=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
-likelihood="Marginal",type="Pairwise",model="Gaussian",
+likelihood="Conditional",type="Pairwise",model="Gaussian",
  optimizer="nlminb",lower=lower,upper=upper,
 neighb=5, start=start,fixed=fixed)
 pcl1
 ###########
 
-start=list(mean=mean(z),sill=var(z),nugget=0.1,skew=0.7,scale=200)
+start=list(mean=mean(z),sill=var(z),nugget=0.1,skew=0.4,scale=140)
 lower=list(mean=-I,sill=0,nugget=0,skew=-I,scale=0)
 upper=list(mean=I,sill=I,nugget=1,skew=I,scale=I)
-fixed=list(smooth=0,power2=1/3.5)
 
 pcl2=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
-  likelihood="Marginal",type="Pairwise",model="SkewGaussian",
+  likelihood="Conditional",type="Pairwise",model="SkewGaussian",
 optimizer="nlminb",lower=lower,upper=upper,
   neighb=5,start=start,fixed=fixed)
 pcl2
@@ -98,22 +97,12 @@ GeoCovariogram(res2,show.vario=TRUE,vario=evariog,pch=20)
 
 
 
-################ covariance matrix ################################################
-matrix1 = GeoCovmatrix(coordx=loc,corrmodel=corrmodel,model="Gaussian",sparse=TRUE,
-  param=as.list(c(pcl1$param,pcl1$fixed)))
-matrix2 = GeoCovmatrix(coordx=loc,corrmodel=corrmodel,model="SkewGaussian",sparse=TRUE,
-  param=as.list(c(pcl2$param,pcl2$fixed)))
-matrix1$nozero
-matrix2$nozero
-
 
 
 
 ###### cross  validation
-KK=100
-seed=9
-a1=GeoCV(pcl1, K=KK, estimation=TRUE, n.fold=0.25,seed=seed,local=TRUE,neighb=100)
-a2=GeoCV(pcl2, K=KK,estimation=TRUE, n.fold=0.25,seed=seed,local=TRUE,neighb=100)
+a1=GeoCV(pcl1, K=100, estimation=TRUE, n.fold=0.25,seed=9,local=TRUE,neighb=100)
+a2=GeoCV(pcl2, K=100,estimation=TRUE, n.fold=0.25,seed=9,local=TRUE,neighb=100)
 mean(a1$rmse);mean(a2$rmse);
 mean(a1$mae);mean(a2$mae);
 

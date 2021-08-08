@@ -68,7 +68,7 @@ lower=lower,upper=upper,
 neighb=3,X=X,start=start,fixed=fixed, model = model)
 
 
-fit2$param
+fit2
 ###########################################################################################
 
 fit3 <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel,
