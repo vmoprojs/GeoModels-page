@@ -65,10 +65,25 @@ neighb=5, start=start,fixed=fixed)
 pcl1
 ###########
 
-start=list(mean=mean(z),sill=var(z),nugget=0.1,skew=0.4,scale=140)
-lower=list(mean=-I,sill=0,nugget=0,skew=-I,scale=0)
-upper=list(mean=I,sill=I,nugget=1,skew=I,scale=I)
+fixed=list(nugget=0,scale=100,smooth=.5)
+start=list(mean=mean(z),sill=var(z),skew=0.4)
+lower=list(mean=-I,sill=0,skew=-I)
+upper=list(mean=I,sill=I,skew=I)
 
+
+pcl02=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
+  type="Independence",model="SkewGaussian",
+optimizer="nlminb",lower=lower,upper=upper,
+ start=start,fixed=fixed)
+pcl02$param
+
+start=as.list(pcl02$param)
+ss=list(nugget=0,scale=100)
+start=append(ss,start)
+fixed=list(smooth=.5)
+
+lower=list(mean=-I,sill=0,skew=-I,scale=0,nugget=0)
+upper=list(mean=I,sill=I,skew=I,scale=I,nugget=1)
 pcl2=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
   likelihood="Conditional",type="Pairwise",model="SkewGaussian",
 optimizer="nlminb",lower=lower,upper=upper,
