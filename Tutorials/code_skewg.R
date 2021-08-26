@@ -60,7 +60,7 @@ cc$nozero
 #############################
 start=list(sill=sill,mean=mean,mean1=mean1,scale=scale,skew=skew)
 fixed=list(power2=power2,nugget=nugget,smooth=smooth)
-fit=GeoFit(data=data,coordx=coords,corrmodel=corrmodel,X=X,
+fit=GeoFit2(data=data,coordx=coords,corrmodel=corrmodel,X=X,
                     neighb=3,model=model,
                     start=start,fixed=fixed)
 
@@ -86,13 +86,13 @@ param_est=as.list(c(fit$param,fixed))
 pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred,corrmodel=corrmodel,model=model,mse=TRUE,X=X,Xloc=Xloc,
        sparse=TRUE,param= param_est)
 
-colour = rainbow(100)
+
 par(mfrow=c(1,3))
 #### map of simulated data
-quilt.plot(coords, data,col=colour,main="Data")
+quilt.plot(coords, data,main="Data")
 map=matrix(pr$pred,ncol=length(xx))
 ## prediction map
-quilt.plot(loc_to_pred, map,col=colour,xlab="",ylab="",main="Simple Kriging ")
+quilt.plot(loc_to_pred, map,xlab="",ylab="",main="Simple Kriging ")
 ## mse prediction map
 map_mse=matrix(pr$mse,ncol=length(xx))
-quilt.plot(loc_to_pred, map_mse,col=colour,xlab="",ylab="",main="mse ")
+quilt.plot(loc_to_pred, map_mse,xlab="",ylab="",main="mse ")
