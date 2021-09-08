@@ -5,9 +5,9 @@ require(devtools);
 require(GeoModels);
 require(fields);
 model="Tukeyh"; # model name in the GeoModels package set.seed(989);
-set.seed(989);
+set.seed(818);
 
-N=600;
+N=1500;
 coords=cbind(runif(N),runif(N));
 
 
@@ -31,11 +31,14 @@ a0=rep(1,N);a1=runif(N,-1,1)
 X=cbind(a0,a1); ## regression matrix
 
 
-
+# simulation
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, smooth=smooth, sill=sill,tail=tail);
+
 data <- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,model=model ,X=X)$data;
 
 
+
+### estimation
 optimizer="nlminb";
 
 fixed1<-list(nugget=nugget,smooth=smooth);
@@ -46,11 +49,13 @@ upper1<-list(mean=I, mean1=I,scale=I,sill=I,tail=0.5);
 
 
 
-fit2 <- GeoFit(data=data,coordx=coords,corrmodel=corrmodel,
+fit2 <- GeoFit2(data=data,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,lower=lower1,upper=upper1,
-neighb=3,X=X,start=start1,fixed=fixed1, model = model);
+type="Pairwise",likelihood="Conditional",
+neighb=4,X=X,start=start1,fixed=fixed1, model = model);
 
-
+#### some graphics ######
+fit2 
 
 res=GeoResiduals(fit2) # computing residuals
 
@@ -62,7 +67,7 @@ res=GeoResiduals(fit2) # computing residuals
 
  GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)
 
-
+##########  kriging ###############
  xx=seq(0,1,0.012) 
  loc_to_pred=as.matrix(expand.grid(xx,xx)) 
  Nloc=nrow(loc_to_pred)
@@ -72,10 +77,6 @@ res=GeoResiduals(fit2) # computing residuals
 param_est=as.list(c(fit2$param,fixed1))
 pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
      corrmodel=corrmodel,model=model,mse=TRUE,param= param_est)
-
-
-
-
 
 colour = rainbow(100)
 #### map of  data
