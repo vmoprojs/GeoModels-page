@@ -87,7 +87,7 @@ upper1= list(mean=I,mean1=I,scale=I,sill=I)
 
 dd=150
 ##### pl estimation
-fit2 = GeoFit(data=temp,coordx=coords,corrmodel=corrmodel,X=X,model="Gaussian",
+fit2 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,X=X,model="Gaussian",
                     maxdist=dd,distance=distance,radius=radius,sensitivity=TRUE,
                        optimizer=optimizer, lower=lower1,upper=upper1,
                     start=start1,fixed=fixed1)
@@ -101,7 +101,7 @@ start1=list(mean=mean,mean1=mean1, scale=scale,df=1/df,sill=sill)
 lower2=list(mean=-I,mean1=-I,scale=0,sill=0,df=0)
 upper2= list(mean=I,mean1=I,scale=I,sill=I,df=0.5)
 
-fit3 = GeoFit(data=temp,coordx=coords,corrmodel=corrmodel,model="StudentT",
+fit3 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,model="StudentT",
                     maxdist=dd,distance=distance,radius=radius,X=X,sensitivity=TRUE,
                     optimizer=optimizer,lower=lower2,upper=upper2,
                     start=start1,fixed=fixed1)       
@@ -113,7 +113,7 @@ print(DF)
 
 fixed=list(nugget=nugget,df=1/DF,smooth=smooth)
 start=list(mean=mean,mean1=mean1, scale=scale,sill=sill)
-fit4 = GeoFit(data=temp,coordx=coords,corrmodel=corrmodel,X=X,optimizer=optimizer,
+fit4 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,X=X,optimizer=optimizer,
                     maxdist=dd,distance=distance,radius=radius, sensitivity=TRUE,
                        lower=lower1,upper=upper1,
                     start=start,fixed=fixed, model="StudentT")
@@ -128,11 +128,12 @@ fit4#T
 ### computing stderr  estimation with psarametric  bootstrap ############
 ##############################################
 KK=100
-v1=GeoVarestbootstrap(fit2,K=KK,optimizer=optimizer,seed=9)#Gaussian
-v2=GeoVarestbootstrap(fit4,K=KK,,optimizer=optimizer,seed=9)#T
+v1=GeoVarestbootstrap(fit2,K=KK,optimizer=optimizer,lower=lower1,upper=upper1,seed=9)#Gaussian
+v2=GeoVarestbootstrap(fit4,K=KK,,optimizer=optimizer,lower=lower1,upper=upper1,seed=9)#T
 
 
 v1$stderr;v1$claic;v1$clbic
+v2$stderr;v2$claic;v2$clbic
 
 
 

@@ -58,33 +58,20 @@ lower=list(mean=-I,sill=0,nugget=0,scale=0)
 upper=list(mean=I,sill=I,nugget=1,scale=I)
 
 fixed=list(smooth=0.5)
-pcl1=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
+pcl1=GeoFit2(coordx=loc,corrmodel=corrmodel,data=z,
 likelihood="Conditional",type="Pairwise",model="Gaussian",
  optimizer="nlminb",lower=lower,upper=upper,
 neighb=5, start=start,fixed=fixed)
 pcl1
 ###########
 
-fixed=list(nugget=0,scale=100,smooth=.5)
-start=list(mean=mean(z),sill=var(z),skew=0.4)
-lower=list(mean=-I,sill=0,skew=-I)
-upper=list(mean=I,sill=I,skew=I)
 
-
-pcl02=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
-  type="Independence",model="SkewGaussian",
-optimizer="nlminb",lower=lower,upper=upper,
- start=start,fixed=fixed)
-pcl02$param
-
-start=as.list(pcl02$param)
-ss=list(nugget=0,scale=100)
-start=append(ss,start)
+start=list(nugget=0,scale=100,mean=mean(z),sill=var(z),skew=0.4)
 fixed=list(smooth=.5)
 
 lower=list(mean=-I,sill=0,skew=-I,scale=0,nugget=0)
 upper=list(mean=I,sill=I,skew=I,scale=I,nugget=1)
-pcl2=GeoFit(coordx=loc,corrmodel=corrmodel,data=z,
+pcl2=GeoFit2(coordx=loc,corrmodel=corrmodel,data=z,
   likelihood="Conditional",type="Pairwise",model="SkewGaussian",
 optimizer="nlminb",lower=lower,upper=upper,
   neighb=5,start=start,fixed=fixed)
@@ -134,11 +121,11 @@ coords_tot=as.matrix(expand.grid(lon_seq,lat_seq))
 gr.in <- locations.inside(coords_tot, SpP)
 
 pr1<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="Gaussian",sparse=TRUE,neighb=1500,
+  model="Gaussian",neighb=100,
   param=as.list(c(pcl1$param,pcl1$fixed)),data=z)
 
 pr2<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="SkewGaussian",sparse=TRUE,neighb=1500,
+  model="SkewGaussian",neighb=100,
   param=as.list(c(pcl2$param,pcl2$fixed)),data=z)
 
 par(mfrow=c(2,2))
