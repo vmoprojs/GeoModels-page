@@ -86,11 +86,6 @@ pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
 colour = rainbow (100)
 
 par(mfrow=c(1,3))
-quilt.plot(x, y, data,col=colour,main="Data") ## map of simulated data 
-map=matrix(pr$pred,ncol=length(xx))
-map=matrix(pr$pred,ncol=length(xx))
-image.plot(xx, xx, map,col=colour,xlab="",ylab="",main="Kriging") ## kriging map 
-map_mse=matrix(pr$mse,ncol=length(xx)) ## associated MSE kriging map 
-image.plot(xx, xx, map_mse,col=colour,xlab="",ylab="",main="MSE")
-
-
+quilt.plot(coords, data,col=colour,main="Data") ## map of simulated data 
+quilt.plot(loc_to_pred, pr$pred,col=colour,xlab="",ylab="",main="Kriging") ## kriging map 
+quilt.plot(loc_to_pred, pr$mse,col=colour,xlab="",ylab="",main="MSE") ## associated MSE kriging map
