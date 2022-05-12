@@ -1,6 +1,4 @@
 rm(list=ls())
-require(devtools)
-install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 set.seed(89)
@@ -35,6 +33,10 @@ model="Gaussian", param=param)
 is.spam(cc$covmatrix)
 cc$nozero
 
+GeoCovDisplay(cc)
+
+
+
 optimizer="nlminb"
 start=list(mean=mean,scale=scale, sill=sill, power2=power2)
 I=Inf
@@ -48,18 +50,22 @@ fitML <- GeoFit(data=sim,coordx=coords,corrmodel=corrmodel,
                     likelihood="Full",type="Standard",
                     start=start,fixed=fixed)
 
-(1/fitML$param["power2"])*fitML$param["scale"]
+(1/fitML$param$power2)*fitML$param$scale
 
 
 fitML
 
 res=GeoResiduals(fitML) 
-GeoQQ(res)
+
 
 
 vario = GeoVariogram(data=res$data,coordx=coords,maxdist=0.6)
 
+GeoQQ(res)
 GeoCovariogram(res,vario=vario,show.vario=TRUE,pch=20)
+
+
+ GeoQQ(res,type="D",ylim=c(0,0.5),breaks=20)
 
 
 xx=seq(0,1,0.015)

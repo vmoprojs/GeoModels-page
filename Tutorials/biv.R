@@ -1,6 +1,6 @@
 rm(list=ls())
 require(devtools)
-install_github("vmoprojs/GeoModels") 
+#install_github("vmoprojs/GeoModels") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
@@ -57,8 +57,7 @@ start=list( mean_1=mean_1,mean_2=mean_2, sill_1=sill_1,sill_2=sill_2,
 
 ## estimation with maximum likelihood 
 fit = GeoFit(data=ss1,coordx=coords, corrmodel=corrmodel,
-	likelihood="Full",type="Standard",optimizer="BFGS", 
-	lower=lower,upper=upper,
+	likelihood="Full",type="Standard",optimizer="BFGS",
 	start=start,fixed=fixed)
 
 fit

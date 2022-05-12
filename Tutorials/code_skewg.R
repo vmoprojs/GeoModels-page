@@ -5,8 +5,6 @@
 ###
 ###############################################################
 rm(list=ls())
-require(devtools)
-install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 require(sn)
@@ -68,7 +66,7 @@ fit
 
 
 res=GeoResiduals(fit)
-GeoQQ(res)
+GeoQQ(res);GeoQQ(res,type="D",ylim=c(0,0.3))
 ####
 vario = GeoVariogram(data=res$data,coordx=coords,maxdist=0.5)
 GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)

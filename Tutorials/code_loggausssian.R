@@ -4,8 +4,6 @@
 #########################################################
 #########################################################
 rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels")
 require(GeoModels)
 require(fields)
 require(hypergeo)
@@ -57,7 +55,7 @@ res=GeoResiduals(fit) # computing residuals
 
 #### checking marginal assumptions
 
-GeoQQ(res)
+GeoQQ(res); 
 
 #### checking dependence assumptions: variogram
 vario = GeoVariogram(data=res$data, coordx=coords,maxdist=0.3) # empirical variogram 

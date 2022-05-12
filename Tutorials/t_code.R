@@ -1,6 +1,5 @@
 rm(list=ls())
 require(devtools)
-#install_github("vmoprojs/GeoModels")
 require(GeoModels);
 require(fields);
 require(hypergeo);
@@ -52,7 +51,7 @@ maxdist=0.04,X=X,start=start1,fixed=fixed1, model = model);
 
 
 
-DF=as.numeric(round(1/fit1$param["df"]));
+DF=round(1/as.numeric(fit1$param["df"]));
 if(DF==2) DF=3;
 print(DF);
 

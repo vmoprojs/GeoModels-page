@@ -1,7 +1,5 @@
 
 rm(list=ls());
-require(devtools); 
-#install_github("vmoprojs/GeoModels"); 
 require(GeoModels);
 require(fields);
 model="Tukeyh"; # model name in the GeoModels package set.seed(989);
@@ -59,7 +57,9 @@ fit2
 
 res=GeoResiduals(fit2) # computing residuals
 
- GeoQQ(res)
+
+GeoQQ(res)
+GeoQQ(res,type="D",ylim=c(0,0.5),breaks=20)
 
 
 
