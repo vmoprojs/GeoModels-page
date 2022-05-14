@@ -1,6 +1,4 @@
 rm(list=ls());
-require(devtools);
-install_github("vmoprojs/GeoModels");
 require(GeoModels);
 require(fields);
 model="Poisson";  # model name in the  GeoModels package
