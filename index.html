@@ -400,8 +400,14 @@
                 
                 
                 <h2 id = "Inst">Installation Instructions</h2>
+
+
+                <h3 id = "Inst_1">Option 1: CRAN version</h3>
                 
-                <h3 id = "Inst_1">Option 1</h3>
+                <p> Our cross-platform version can be found at CRAN: <a href = "https://https://cran.r-project.org/web/packages/GeoModels/index.html"><code>GeoModels</code></a> package. You can install it with: <code>install.packages("GeoModels")</code></p>
+                
+                
+                <h3 id = "Inst_1">Option 2: Developer</h3>
                 
                 <p>We currently are loaded in Github only. This means that for <code>GeoModels</code> installation you will need to previously install <a href = "https://cran.r-project.org/web/packages/devtools/index.html"><code>devtools</code></a> package if you do not have it installed yet:</p>
                 
@@ -471,14 +477,7 @@
                 
                 Notice that in Apple, XCode must be also installed required headers are installed. We also recommend to install <code>gpuR package</code> and try an example from that package so that OpenCL headers are tested. Installation instructions are in this <a href = "https://github.com/cdeterman/gpuR/wiki/Build-Instructions-for-OSX"><code>link</code></a>.
                 
-                <h3 id = "Inst_1">Option 2</h3>
-
-                The following link provides a <code>.tar.gz</code> package to install GeoModels in any platform: <code>https://github.com/vmoprojs/GeoModels-page/blob/master/GeoModels_1.0.3-4.tar.gz</code>.
-                <p>Beware that GeoModels depends on the following packages so they should be installed beforehand:
-
-                <ul>
-                    <li><code>GPvecchia,fields, mapproj, plot3D, shape, spam, scatterplot3d, dfoptim, dotCall64, optimParallel, parallel, plotrix, pracma,mcGlobaloptim, pbivnorm, zipfR, sn, numDeriv, hypergeo, ucminf, RANN,lamW, GpGp,VGAM</code> </li>
-                </ul>
+                
 
 
 
@@ -489,6 +488,11 @@
                 <p>Associated publications:</p>
                 
                 <ul>
+
+                    <li>Bevilacqua M., Caamaño C., Porcu E. (2022) Unifying Compactly Supported and Matern Covariance Functions in Spatial Statistics <i>Journal of Multivariate Analysis.</i>  10.1016/j.jmva.2022.104949</li>
+
+                    <li>Bevilacqua M., Caamaño C., Arellano-Valle R. B., Camilo Gomez C. (2022) A class of random fields with two-piece marginal distributions for modeling point-referenced data with spatial outliers. <i>Test</i>.  DOI: 10.1007/s11749-021-00797-5</li>
+
 
 					<li>Morales-Navarrete D., Bevilacqua M., Caamaño-Carrillo C., Castro L.M.
  					Modelling Point Referenced Spatial Count Data: A Poisson Process Approach. <i>arXiv:2105.03734</i>
@@ -530,20 +534,21 @@
                 
                 <!--
                 <code>
-                    To cite package ‘GeoModels’ in publications use:<br>
-                    
-                    Moreno Bevilacqua and Víctor Morales-Oñate (2018). GeoModels: an R Package for Geostatistical Gaussian and non Gaussian Data Analysis.<br>
-                    R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/<br><br>
-                    
-                    A BibTeX entry for LaTeX users is<br>
-                    
-                    @Manual{GM2018,<br>
-                    title = {GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis},<br>
-                    author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},<br>
-                    year = {2018},<br>
-                    note = {R package version 1.0.3-4},<br>
-                    url = {https://vmoprojs.github.io/GeoModels-page/},<br>
-                    }
+                    To cite package ‘GeoModels’ in publications use:
+                    Moreno Bevilacqua, Víctor Morales-Oñate and Christian
+                    Caamaño-Carrillo (2022). GeoModels: Procedures for
+                    Gaussian and Non Gaussian Geostatistical (Large) Data
+                    Analysis. R package version 1.0.0.
+                    https://vmoprojs.github.io/GeoModels-page/
+
+                    A BibTeX entry for LaTeX users is
+                    @Manual{GM2022,
+                    title = {GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis},
+                    author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},
+                    year = {2022},
+                    note = {R package version 1.0.0},
+                    url = {https://vmoprojs.github.io/GeoModels-page/}
+  }
                 </code>
                 -->
                 
@@ -553,16 +558,16 @@
                         <td bgcolor="#fff"><code>
                             <p>To cite package ‘GeoModels’ in publications use:<br>
                             
-                            Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo (2018). GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis.<br>
-                            R package version 1.0.3-4. https://vmoprojs.github.io/GeoModels-page/<br><br>
+                            Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo (2022). GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis.<br>
+                            R package version 1.0.0. https://vmoprojs.github.io/GeoModels-page/<br><br>
                             
                             A BibTeX entry for LaTeX users is<br>
                             
-                            @Manual{GM2018,<br>
-                            title = {GeoModels: A Package for Geostatistical Gaussian and non Gaussian Data Analysis},<br>
+                            @Manual{GM2022,<br>
+                            title = {GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis},<br>
                             author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},<br>
                             year = {2018},<br>
-                            note = {R package version 1.0.3-4},<br>
+                            note = {R package version 1.0.0},<br>
                             url = {https://vmoprojs.github.io/GeoModels-page/},<br>
                             }</p>
                         </code></td>
@@ -628,8 +633,8 @@
         </section>
         
         <footer>
-            <p>GeoModels, last update: Aug.-2021</p>
-            <img src="Figures/under_construction.jpg" alt="VMO" width="200" height="60">
+            <p>GeoModels, last update: May, 2022</p>
+            <!-- <img src="Figures/under_construction.jpg" alt="VMO" width="200" height="60"> -->
         </footer>
         
     </body>
