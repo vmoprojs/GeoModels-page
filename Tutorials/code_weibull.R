@@ -1,4 +1,4 @@
-#########################################################
+﻿#########################################################
 #########################################################
 # code fot the tutorial on Weibull  random fields analysis
 #########################################################
@@ -38,7 +38,7 @@ power2 =4
 
 
 
-param=list(mean=mean,mean1=mean1,sill=1, nugget=nugget, scale=scale ,power2=power2 ,shape=shape)
+param=list(mean=mean,mean1=mean1, nugget=nugget, scale=scale ,power2=power2 ,shape=shape)
 set.seed(312)
 data = GeoSim(coordx=coords , corrmodel=corrmodel , model=model , param=param ,
 X=X)$data
@@ -48,12 +48,12 @@ X=X)$data
 
 
 start=list(mean=mean,mean1=mean1,scale=scale,shape=shape)
-fixed=list(sill=1-nugget ,nugget=nugget ,power2=power2)
+fixed=list(nugget=nugget ,power2=power2)
 # Maximum composite-likelihood fitting of the Weibull random field:
 fit = GeoFit(data=data,coordx=coords, corrmodel=corrmodel,model=model,X=X,
-optimizer="BFGS",start=start,fixed=fixed,maxdist=0.02)
+optimizer="BFGS",start=start,fixed=fixed,neighb=3)
 
-
+fit
 
 # computing residuals
 res=GeoResiduals(fit) 

@@ -21,7 +21,7 @@ nugget =0;
 
 # mean parameter
 mean = 1.5 # regression paramteres 
-param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth, sill=1);
+param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth);
 data_s <- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,model=model)$data;
 
 mean(data_s);var (data_s)
@@ -47,7 +47,7 @@ X=cbind(a0,a1); ## regression matrix
 
 
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, 
-		power2=power2, sill=1);
+		power2=power2);
 data_ns <- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,
 			X=X,model=model)$data;
 
@@ -57,26 +57,26 @@ data_ns <- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,
 ###################################
 optimizer="nlminb";
 
-fixed1<-list(sill=1,nugget=0,smooth=0.5);
+fixed1<-list(nugget=0,smooth=0.5);
 start1<-list(mean=1.5,scale=0.25/3);
 
 lower<-list(mean=-5,scale=0);
 upper<-list(mean=5,scale=2);
 
-maxdist=0.03;
+neighb=3;
 corrmodel = "Matern"; 
 ## pairwise poisson likelihhod
 fit1 <- GeoFit(data=data_s,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,lower=lower,upper=upper,
-maxdist=maxdist,start=start1,fixed=fixed1, model = model);
+neighb=neighb,start=start1,fixed=fixed1, model = model);
 
 ## misspecified gaussian likelihhod
 fit2 <- GeoFit(data=data_s,coordx=coords,corrmodel=corrmodel,
- optimizer=optimizer, lower=lower,upper=upper,maxdist=maxdist,
+ optimizer=optimizer, lower=lower,upper=upper,neighb=neighb,
 start=start1,fixed=fixed1, model = "Gaussian_misp_Poisson")
 
-fit1$param
-fit2$param
+unlist(fit1$param)
+unlist(fit2$param)
 ###########################################################################################
 # Empirical estimation of the variogram:
 vario <- GeoVariogram(data=data_s,coordx=coords,maxdist=0.4)
@@ -91,7 +91,7 @@ GeoCovariogram(fit1,show.vario=TRUE, vario=vario,pch=20)
 ###################################
 optimizer="nlminb";
 corrmodel = "Wend0"; 
-fixed2<-list(sill=1,nugget=0,power2=4);
+fixed2<-list(nugget=0,power2=4);
 start2<-list(mean=1.5,mean1=-0.25,scale=0.2);
 
 lower<-list(mean=-5,mean1=-5,scale=0);
@@ -101,17 +101,17 @@ upper<-list(mean=5,mean1=5,scale=2);
 fit1_ns <- GeoFit(data=data_ns,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,
 lower=lower,upper=upper,X=X,
-maxdist=maxdist,start=start2,fixed=fixed2, model = model);
+neighb=neighb,start=start2,fixed=fixed2, model = model);
 
 ###########################################################################################
 
 fit2_ns <- GeoFit(data=data_ns,coordx=coords,corrmodel=corrmodel,
 optimizer=optimizer,
 lower=lower,upper=upper,X=X,
-maxdist=maxdist,start=start2,fixed=fixed2, model = "Gaussian_misp_Poisson")
+neighb=neighb,start=start2,fixed=fixed2, model = "Gaussian_misp_Poisson")
 
-fit1_ns$param
-fit2_ns$param
+unlist(fit1_ns$param)
+unlist(fit2_ns$param)
 
 
 
@@ -147,9 +147,9 @@ NN=nrow(loc_to_pred)
 a0=rep(1,NN);a1=runif(NN)
 Xloc=cbind(a0,a1); ## 
 corrmodel = "Wend0"; 
-param_est=as.list(c(fit1_ns$param,fixed2))
-pr=GeoKrig(data=data_ns, coordx=coords,loc=loc_to_pred,X=X,Xloc=Xloc,
-     corrmodel=corrmodel,model=model,mse=TRUE,param= param_est)
+param_est=append(fit1_ns$param,fixed2)
+pr=GeoKrigloc(data=data_ns, coordx=coords,loc=loc_to_pred,X=X,Xloc=Xloc,
+     corrmodel=corrmodel,model=model,mse=TRUE,param= param_est,neighb=100)
 
 colour = rainbow(100)
 #### map of  data

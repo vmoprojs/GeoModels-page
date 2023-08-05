@@ -27,7 +27,7 @@ n=10
 
 # mean parameter
 mean = 0.5 # 
-param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth, sill=1);
+param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth);
 
 data_s <- GeoSim(coordx=coords ,corrmodel=corrmodel , 
         param=param ,model="Binomial",n=n)$data;
@@ -72,7 +72,7 @@ head(n)
 
 
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, 
-          smooth=smooth, sill=1)
+          smooth=smooth)
 
 data_ns<- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,n=n,
                X=X,model="Binomial")$data;
@@ -86,7 +86,7 @@ data_ns<- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,n=n,
 ###################################
 
 
-fixed2<-list(sill=1,nugget=0,smooth=smooth);
+fixed2<-list(nugget=0,smooth=smooth);
 start2<-list(mean=mean,mean1=mean1,scale=scale);
 lower<-list(mean=-5,mean1=-5,scale=0);
 upper<-list(mean=5,mean1=5,scale=10);
