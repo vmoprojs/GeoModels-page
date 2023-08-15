@@ -1,6 +1,4 @@
 rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels")
 library(GeoModels)
 library(fields)
 require(limma)
@@ -13,24 +11,37 @@ require(geoR)
 
 
 data(austemp)
+head(austemp)
+
+
+coords=cbind(austemp[,1],austemp[,2])
+temp=austemp[,3]
+
+
+
+plot(temp,austemp[,4],pch=20,xlab="Geom. temperature",ylab="Max. temperature")
+
+
+
 radius=6371
 distance="Geod"
 
 
 ############# preliminary aanalysis  #####
-coords=cbind(austemp[,1],austemp[,2])
-temp=austemp[,3]
+
 quilt.plot(coords,temp,xlab="long",ylab="lat")
 oz(states=FALSE,add=T, lwd=2) #
 
 
+
+
 hist(temp,main="Histogram of Maximum temperature",nclass=13)
-maxdist=max(rdist.earth(coords,miles=F,R=radius))
-vario <- GeoVariogram(coordx=coords,data=temp,distance="Geod",maxdist=maxdist/5,radius=radius)
 
 GeoScatterplot(data=temp,coordx=coords,distance="Geod",maxdist=500,numbins=6)
 
-# Results:
+maxdist=max(rdist.earth(coords,miles=F,R=radius))
+
+vario <- GeoVariogram(coordx=coords,data=temp,distance="Geod",maxdist=maxdist/5,radius=radius)
 plot(vario, xlab='GC distance', ylab=expression(gamma(GC)),cex=1.5,cex.lab=1.5,
 ylim=c(0, max(vario$variograms)), pch=20,
 main="Semi-variogram")
@@ -74,22 +85,12 @@ upper1= list(mean=I,mean1=I,scale=I,sill=I)
 ##############################################
 ########### Gaussian case ####################
 ##############################################
-##### ml estimation
 
-#fitml_m = GeoFit(data=temp,coordx=coords,corrmodel=corrmodel,X=X,model="Gaussian",optimizer=optimizer,
-#                    distance=distance,radius=radius,
-#                       lower=lower1,upper=upper1,
-#                    likelihood="Full",type="Standard",#varest=TRUE,
-#                    start=start1,fixed=fixed1)
-#print(fitml_m)
-
-
-
-dd=150
 ##### pl estimation
 fit2 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,X=X,model="Gaussian",
-                    maxdist=dd,distance=distance,radius=radius,sensitivity=TRUE,
+                    neighb=5,distance=distance,radius=radius,sensitivity=TRUE,
                        optimizer=optimizer, lower=lower1,upper=upper1,
+                       likelihood="Marginal",type='Pairwise',
                     start=start1,fixed=fixed1)
 print(fit2)
 ##############################################
@@ -102,11 +103,12 @@ lower2=list(mean=-I,mean1=-I,scale=0,sill=0,df=0)
 upper2= list(mean=I,mean1=I,scale=I,sill=I,df=0.5)
 
 fit3 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,model="StudentT",
-                    maxdist=dd,distance=distance,radius=radius,X=X,sensitivity=TRUE,
+                   neighb=5,distance=distance,radius=radius,X=X,sensitivity=TRUE,
                     optimizer=optimizer,lower=lower2,upper=upper2,
+                likelihood="Marginal",type='Pairwise',
                     start=start1,fixed=fixed1)       
 print(fit3)
-DF=as.numeric(round(1/fit3$param['df']))
+DF=as.numeric(round(1/unlist(fit3$param)['df']))
 if(DF==2) DF=3
 print(DF)
 
@@ -114,8 +116,9 @@ print(DF)
 fixed=list(nugget=nugget,df=1/DF,smooth=smooth)
 start=list(mean=mean,mean1=mean1, scale=scale,sill=sill)
 fit4 = GeoFit2(data=temp,coordx=coords,corrmodel=corrmodel,X=X,optimizer=optimizer,
-                    maxdist=dd,distance=distance,radius=radius, sensitivity=TRUE,
+                    neighb=5,distance=distance,radius=radius, sensitivity=TRUE,
                        lower=lower1,upper=upper1,
+                     likelihood="Marginal",type='Pairwise',
                     start=start,fixed=fixed, model="StudentT")
                    
 print(fit4)
@@ -148,9 +151,13 @@ GeoQQ(res_g)
 GeoQQ(res_t)
 
 ########### some diagnostic graphics ############################################
-varionorm = GeoVariogram(data=res_t$data,coordx=coords,maxdist=maxdist/5,distance=distance,radius=radius)
-GeoCovariogram(res_t,show.vario=TRUE, vario=varionorm,pch=20)
 
+varionorm=GeoVariogram(data=res_g$data,coordx=coords,radius=radius, maxdist=maxdist/5,distance=distance);
+GeoCovariogram(res_g,show.vario=TRUE, vario=varionorm,pch=20,ylim=c(0,1.5))
+
+### semi-variogram residuals of t Random fields
+variot=GeoVariogram(data=res_t$data,coordx=coords,maxdist=maxdist/5, distance=distance ,radius=radius);
+GeoCovariogram(res_t,show.vario=TRUE, vario=variot,pch=20,ylim=c(0,2.5));
 
 
 
@@ -160,7 +167,7 @@ coords_to_pred=matrix(c(135,-25),ncol=2)
 ## prediction of residuals
 pr_student2<-GeoKrig(data=res_t$data, coordx=coords,loc=coords_to_pred,corrmodel=corrmodel,
     distance=distance,radius=radius,mse=TRUE,
-   model="StudentT",param= as.list(c(res_t$param,res_t$fixed)))
+   model="StudentT",param= append(res_t$param,res_t$fixed))
 
 pr_student2$pred
 pr_student2$mse
