@@ -1,14 +1,10 @@
 rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels")
 require(GeoModels);
 require(fields);
 require(hypergeo);
-require(limma);
 model="StudentT"; # model name in the GeoModels package
+ set.seed(199);
 
-
- set.seed(989);
  N=600;
  coords=cbind(runif(N),runif(N));
 
@@ -52,7 +48,7 @@ neighb=3,X=X,start=start1,fixed=fixed1, model = model);
 
 
 
-DF=as.numeric(round(1/fit1$param["df"]));
+DF=as.numeric(round(1/fit1$param$df));
 if(DF==2) DF=3;
 print(DF);
 
@@ -77,15 +73,15 @@ lower=lower,upper=upper,
 neighb=3,X=X,start=start,fixed=fixed, model = "Gaussian_misp_StudentT")
 
 
-fit2$param
-fit3$param
+unlist(fit2$param)
+unlist(fit3$param)
 
 res=GeoResiduals(fit2) # computing residuals
 GeoQQ(res)
 
 
 vario <- GeoVariogram(data=res$data,coordx=coords,maxdist=0.4) 
-GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20)
+GeoCovariogram(res,show.vario=TRUE, vario=vario,pch=20,ylim=c(0,2))
 
 
 
