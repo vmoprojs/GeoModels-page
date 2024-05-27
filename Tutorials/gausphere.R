@@ -23,7 +23,7 @@ globepoints(loc=coords,pch=20,cex=0.4)
 
 
 corrmodel = "Smoke"    ## correlation model and parameters
-scale=radius*0.2
+scale=0.2
 smooth=0.5
 sill=1
 nugget=0
@@ -127,7 +127,7 @@ res=GeoResiduals(fit_geo_pl)
 
 ### checking model assumptions: marginal distribution
 GeoQQ(res)
-### checking model assumptions: ST variogram model
+### checking model assumptions: semi variogram model
 vario = GeoVariogram(data=res$data,coordx=coords,maxdist=max(geod_ds)/2,distance="Geod",radius=radius)
 GeoCovariogram(res,vario=vario,show.vario=TRUE,pch=20,ylim=c(0,1.2))
 
