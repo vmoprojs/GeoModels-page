@@ -72,10 +72,8 @@ xx=seq(0,1,0.015)
 loc_to_pred=as.matrix(expand.grid(xx,xx))    # locations to predict
 
 
-param_est=as.list(c(fitML$param,fixed))
-pr = GeoKrig(data=sim,coordx=coords,  corrmodel=corrmodel,
- sparse=TRUE,model="Gaussian",mse=TRUE,loc=loc_to_pred,
-	         param=param_est)
+
+pr = GeoKrig(fitML,  loc=loc_to_pred,sparse=TRUE,mse=TRUE)
 
 
 
@@ -91,6 +89,3 @@ image.plot(xx, xx, matrix(pr$pred,ncol=length(xx)),
 
 image.plot(xx, xx, matrix(pr$mse,ncol=length(xx)),
            main = paste("MSE"),ylab="")
-
-
-

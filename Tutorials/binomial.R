@@ -1,10 +1,8 @@
 rm(list=ls());
-require(devtools);
-#install_github("vmoprojs/GeoModels");
 require(GeoModels);
 require(fields);
 
- ###################################
+###################################
 #  stationary case  ####
 ###################################
 
@@ -27,7 +25,7 @@ n=10
 
 # mean parameter
 mean = 0.5 # 
-param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth);
+param=list(nugget=nugget,mean=mean, scale=scale, smooth=smooth, sill=1);
 
 data_s <- GeoSim(coordx=coords ,corrmodel=corrmodel , 
         param=param ,model="Binomial",n=n)$data;
@@ -72,7 +70,7 @@ head(n)
 
 
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, 
-          smooth=smooth)
+          smooth=smooth, sill=1)
 
 data_ns<- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,n=n,
                X=X,model="Binomial")$data;
@@ -86,16 +84,16 @@ data_ns<- GeoSim(coordx=coords ,corrmodel=corrmodel , param=param ,n=n,
 ###################################
 
 
-fixed2<-list(nugget=0,smooth=smooth);
+fixed2<-list(sill=1,nugget=0,smooth=smooth);
 start2<-list(mean=mean,mean1=mean1,scale=scale);
 lower<-list(mean=-5,mean1=-5,scale=0);
 upper<-list(mean=5,mean1=5,scale=10);
 
+neighb=4
 
-
-fit1_ns<- GeoFit2(data=data_ns,coordx=coords,corrmodel=corrmodel,
+fit1_ns<- GeoFit(data=data_ns,coordx=coords,corrmodel=corrmodel,
 likelihood="Conditional",type="Pairwise",
-n=n, X=X, neighb=4,sensitivity=TRUE,
+n=n, X=X, neighb=neighb,sensitivity=TRUE,
 optimizer="nlminb",lower=lower,upper=upper,
 start=start2,fixed=fixed2, model="Binomial");
 
@@ -119,9 +117,7 @@ Xloc=cbind(a0,a1);
 
 nloc=sample(10:20,nrow(loc_to_pred),replace=TRUE)
 ##### binomial 
-param_est=as.list(c(fit1_ns$param,fixed2))
-pr=GeoKrig(data=data_ns, coordx=coords,loc=loc_to_pred,X=X,Xloc=Xloc,
-     n=n,nloc=nloc,corrmodel=corrmodel,model="Binomial",mse=TRUE,param= param_est)
+pr=GeoKrig(fit1_ns,loc=loc_to_pred,Xloc=Xloc,nloc=nloc,mse=TRUE)
 
 
 par(mfrow=c(1,3))
@@ -139,4 +135,3 @@ image.plot(xx,xx,map,xlab="",zlim=c(0,nn),ylab="",main="Kriging")
 map_mse=matrix(pr$mse,ncol=length(xx))
 
 image.plot(xx,xx,map_mse,xlab="",ylab="",main="MSE")
-

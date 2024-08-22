@@ -1,4 +1,3 @@
-
 ################################################################
 ###
 ### Analysis of asymmetric spatial data with a skewGaussian RF
@@ -79,10 +78,9 @@ xx=seq(0,1,0.012)
 loc_to_pred=as.matrix(expand.grid(xx,xx))
 Nloc=nrow(loc_to_pred)
 Xloc=cbind(rep(1,Nloc),runif(Nloc))
-param_est=as.list(c(fit$param,fixed))
 
-pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred,corrmodel=corrmodel,model=model,mse=TRUE,X=X,Xloc=Xloc,
-       sparse=TRUE,param= param_est)
+
+pr=GeoKrig(fit,loc=loc_to_pred,Xloc=Xloc,mse=TRUE,sparse=TRUE)
 
 
 par(mfrow=c(1,3))

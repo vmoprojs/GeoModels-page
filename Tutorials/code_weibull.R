@@ -1,4 +1,4 @@
-﻿#########################################################
+#########################################################
 #########################################################
 # code fot the tutorial on Weibull  random fields analysis
 #########################################################
@@ -63,7 +63,6 @@ GeoQQ(res); GeoQQ(res,type="D")
 vario = GeoVariogram(data=res$data, coordx=coords,maxdist=0.3) # empirical variogram 
 GeoCovariogram(res, show.vario=TRUE, vario=vario,pch=20)
 
-#GeoScatterplot(res$data, coordx=coords,neighb=c(5,15))
 
 
 ##################
@@ -74,10 +73,9 @@ loc_to_pred=as.matrix(expand.grid(xx,xx))
 Nloc=nrow(loc_to_pred)
 Xloc=cbind(rep(1,Nloc),runif(Nloc))
 
-param_est=append(fit$param,fit$fixed)
-pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
-	corrmodel=corrmodel,model=model,mse=TRUE,
-       sparse=TRUE,param=param_est)
+
+pr=GeoKrig(fit,loc=loc_to_pred,Xloc=Xloc,mse=TRUE,
+       sparse=TRUE)
 
 
 

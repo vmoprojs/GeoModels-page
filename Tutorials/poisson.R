@@ -35,13 +35,13 @@ plot(table(data_s),ylab = "Frequency")
 # simulation  nonstationary case  #
 ###################################
 corrmodel = "Wend0";        ## correlation model 
-scale = 0.2;               ## scale parameter
+scale = 0.3;               ## scale parameter
 power2=4 ;                  ## power parameter
 nugget=0;                    ## nugget parameter
 
 
-mean = 1.5 # regression paramteres 
-mean1= -0.25
+mean = 0.5 # regression paramteres 
+mean1= -0.15
 a0=rep(1,N);a1=runif(N)
 X=cbind(a0,a1); ## regression matrix
 
@@ -122,10 +122,8 @@ unlist(fit2_ns$param)
 ###################################
 xx=seq(0,1,0.015) 
 loc_to_pred=as.matrix(expand.grid(xx,xx)) 
-param_est=as.list(c(fit1$param,fixed1))
 corrmodel = "Matern"; 
-pr=GeoKrig(data=data_s, coordx=coords,loc=loc_to_pred,
-     corrmodel=corrmodel,model=model,mse=TRUE,param= param_est)
+pr=GeoKrig(fit1,loc=loc_to_pred,mse=TRUE)
 colour = rainbow(100)
 #### map of  data
 quilt.plot(coords[,1], coords[,2], data_s,col=colour,main="Data")  
@@ -147,9 +145,7 @@ NN=nrow(loc_to_pred)
 a0=rep(1,NN);a1=runif(NN)
 Xloc=cbind(a0,a1); ## 
 corrmodel = "Wend0"; 
-param_est=append(fit1_ns$param,fixed2)
-pr=GeoKrigloc(data=data_ns, coordx=coords,loc=loc_to_pred,X=X,Xloc=Xloc,
-     corrmodel=corrmodel,model=model,mse=TRUE,param= param_est,neighb=100)
+pr=GeoKrig(fit1_ns,loc=loc_to_pred,Xloc=Xloc,mse=TRUE)
 
 colour = rainbow(100)
 #### map of  data
@@ -160,4 +156,3 @@ image.plot(xx,xx,map,col=colour,xlab="",ylab="",main="Kriging")
 #map MSE
 map_mse=matrix(pr$mse,ncol=length(xx))
 image.plot(xx,xx,map_mse,col=colour,xlab="",ylab="",main="MSE")
-
