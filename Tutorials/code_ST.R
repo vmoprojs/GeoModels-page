@@ -1,6 +1,4 @@
 rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels-OCL") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
@@ -73,10 +71,7 @@ times=c(2)
 n_tim=length(times)
 Xloc=cbind(rep(1,n_loc*n_tim),runif(n_loc*n_tim))
 
-param_est=as.list(c(fit$param,fixed))
-pr = GeoKrig(data=ss1,coordx=coords, coordt=coordt, corrmodel=corrmodel,
-	         X=X,Xloc=Xloc,sparse=TRUE,
-	          model=model,mse=TRUE,loc=loc_to_pred,time=times,param=param_est)
+pr = GeoKrig(fit,loc=loc_to_pred,time=times,Xloc=Xloc,sparse=TRUE,mse=TRUE)
 
 par(mfrow=c(1,3))
 colour <- rainbow(100)
@@ -85,3 +80,7 @@ image.plot(xx, xx, matrix(pr$pred,ncol=length(xx)),col=colour, main = paste(" Kr
 image.plot(xx, xx, matrix(pr$mse,ncol=length(xx)),col=colour,
            main = paste("MSE Time=" , 2),ylab="")
 
+
+prloc = GeoKrigloc(fit,loc=loc_to_pred,time=times,Xloc=Xloc,sparse=TRUE,mse=TRUE,neighb=150,maxtime=2,parallel=TRUE)
+
+summary(c(pr$pred-prloc$pred))
