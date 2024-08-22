@@ -1,6 +1,4 @@
-#########################################################
-#########################################################
-# code for the tutorial on loggaussian  random fields analysis
+
 #########################################################
 #########################################################
 rm(list=ls())
@@ -78,10 +76,8 @@ loc_to_pred=as.matrix(expand.grid(xx,xx))
 Nloc=nrow(loc_to_pred)
 Xloc=cbind(rep(1,Nloc),runif(Nloc))
 
-param_est=as.list(c(fit$param,fixed))
-pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
-	corrmodel=corrmodel,model=model,mse=TRUE,
-       sparse=TRUE,param=param_est)
+
+pr=GeoKrig(fit,loc=loc_to_pred,Xloc=Xloc,mse=TRUE,sparse=TRUE)
 
 
 
@@ -91,7 +87,6 @@ colour = terrain.colors (20)
 
 par(mfrow=c(1,3))
 quilt.plot(x, y, data,col=colour,main="Data") ## map of simulated data 
-map=matrix(pr$pred,ncol=length(xx))
 map=matrix(pr$pred,ncol=length(xx))
 image.plot(xx, xx, map,col=colour,xlab="",ylab="",main="Kriging") ## kriging map 
 map_mse=matrix(pr$mse,ncol=length(xx)) ## associated MSE kriging map 
