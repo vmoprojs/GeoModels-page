@@ -74,9 +74,8 @@ GeoQQ(res,type="D",ylim=c(0,0.5),breaks=20)
  Xloc=cbind(rep(1,Nloc),runif(Nloc))
 
 
-param_est=as.list(c(fit2$param,fixed1))
-pr=GeoKrig(data=data, coordx=coords,loc=loc_to_pred, X=X,Xloc=Xloc,
-     corrmodel=corrmodel,model=model,mse=TRUE,param= param_est)
+
+pr=GeoKrig(fit2, loc=loc_to_pred, X=X,Xloc=Xloc,mse=TRUE)
 
 colour = rainbow(100)
 #### map of  data

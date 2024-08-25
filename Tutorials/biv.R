@@ -1,6 +1,4 @@
 rm(list=ls())
-require(devtools)
-#install_github("vmoprojs/GeoModels") 
 require(GeoModels)
 require(fields)
 model="Gaussian" # model name in the GeoModels package 
@@ -88,12 +86,8 @@ xx=seq(0,1,0.012)
 loc_to_pred=as.matrix(expand.grid(xx,xx))
 
 
-param_est=as.list(c(fit_pl$param,fixed))
-pr1 = GeoKrig(data=ss1,coordx=coords,  corrmodel=corrmodel,which=1,
-	          model=model,mse=TRUE,loc=loc_to_pred,param=param_est)
-
-pr2 = GeoKrig(data=ss1,coordx=coords,  corrmodel=corrmodel,which=2,
-	          model=model,mse=TRUE,loc=loc_to_pred,param=param_est)
+pr1 = GeoKrig(fit_pl,which=1, loc=loc_to_pred,mse=TRUE)
+pr2 = GeoKrig(fit_pl,which=2, loc=loc_to_pred,mse=TRUE)	   
 
 
 par(mfrow=c(2,3))
