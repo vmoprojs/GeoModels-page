@@ -4,7 +4,7 @@ date: ""
 output: md_document
 ---
 
-The GeoModels package provides a set of procedures for simulation, estimation and prediction of spatio-temporal random fields.
+GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis
 
 
 
