@@ -52,3 +52,5 @@ The main features of the package are:
 -   Visit our website for more information: [link](https://vmoprojs.github.io/GeoModels-page/)
 
 -   Please report any bugs, suggestions and/or improvements: [link](https://github.com/vmoprojs/GeoModels-page/issues)
+
+-   CRAN: https://doi.org/10.32614/CRAN.package.GeoModels
