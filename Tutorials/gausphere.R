@@ -22,7 +22,7 @@ globeearth(eye=place("everest"))
 globepoints(loc=coords,pch=20,cex=0.4)
 
 
-corrmodel = "Smoke"    ## correlation model and parameters
+corrmodel = "F_Sphere"    ## correlation model and parameters
 scale=0.2
 smooth=0.5
 sill=1
@@ -137,10 +137,8 @@ GeoCovariogram(res,vario=vario,show.vario=TRUE,pch=20,ylim=c(0,1.2))
 
 loc_to_pred=as.matrix(expand.grid(seq(-180,180,2.5),seq(45,90,0.15)))
 dim(loc_to_pred)
-param_est<-as.list(c(fixed,fit_geo_pl$param))
-pr_geo=GeoKrigloc(data=data,loc=loc_to_pred,coordx=coords,corrmodel=corrmodel,
-                  radius=radius,distance="Geod",param=param_est,mse=TRUE,neighb=100)
 
+pr_geo=GeoKrigloc(fit_geo_pl,loc=loc_to_pred,mse=TRUE,neighb=100)
 
 predictions=cbind(loc_to_pred,pr_geo$pred,pr_geo$mse)
 head(predictions)
