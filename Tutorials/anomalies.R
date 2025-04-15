@@ -73,11 +73,11 @@ pcl2
 set.seed(5)
 
 pcl1_est=GeoVarestbootstrap(pcl1,K=100,
-              optimizer="nlminb",lower=lower, upper=upper)
+              optimizer="nlminb",lower=lower, upper=upper,parallel=T)
 
 set.seed(5)
 pcl2_est=GeoVarestbootstrap(pcl2,K=100,
-              optimizer="nlminb",lower=lower2, upper=upper2)
+              optimizer="nlminb",lower=lower2, upper=upper2,parallel=T)
 
 
 
@@ -110,9 +110,9 @@ GeoCovariogram(res2,show.vario=TRUE, vario=evariog,pch=20,ylim=c(0,1.7))
 
 ###### cross  validation
 set.seed(9)
-a1=GeoCV(pcl1, K=100, estimation=TRUE, n.fold=0.25,local=TRUE,neighb=100)
+a1=GeoCV(pcl1, K=100, estimation=TRUE, n.fold=0.25,local=TRUE,neighb=100,parallel=T)
 set.seed(9)
-a2=GeoCV(pcl2, K=100,estimation=TRUE, n.fold=0.25,local=TRUE,neighb=100)
+a2=GeoCV(pcl2, K=100,estimation=TRUE, n.fold=0.25,local=TRUE,neighb=100,parallel=T)
 mean(a1$rmse);mean(a2$rmse);
 mean(a1$mae);mean(a2$mae);
 
@@ -133,13 +133,10 @@ lon_seq=seq(long1,long2,23)
 coords_tot=as.matrix(expand.grid(lon_seq,lat_seq))
 gr.in <- locations.inside(coords_tot, SpP)
 
-pr1<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="Gaussian",neighb=100,
-  param=append(pcl1$param,pcl1$fixed),data=z)
+pr1<-GeoKrigloc(pcl1,loc=gr.in,mse=TRUE,neighb=100)
 
-pr2<-GeoKrigloc(loc=gr.in,coordx=loc,corrmodel=corrmodel,mse=TRUE,
-  model="SkewGaussian",neighb=100,
-  param=append(pcl2$param,pcl2$fixed),data=z)
+pr2<-GeoKrigloc(pcl2,loc=gr.in,mse=TRUE,neighb=100)
+
 
 par(mfrow=c(2,2))
 
@@ -147,8 +144,3 @@ quilt.plot(gr.in,pr1$pred)
 quilt.plot(gr.in,pr1$mse) 
 quilt.plot(gr.in,pr2$pred)
 quilt.plot(gr.in,pr2$mse)
-#######################################
-
-
-
-
