@@ -63,17 +63,19 @@ fit
 
 
 fit_pl = GeoFit(data=ss1,coordx=coords, corrmodel=corrmodel,
- maxdist=c(0.1,0.1,0.1),likelihood="Marginal",type="Pairwise",
+ neighb=8,likelihood="Marginal",type="Pairwise",
  optimizer="BFGS", start=start, fixed=fixed)
 
 fit_pl
 
-res=GeoResiduals(fit_pl)
 
+
+res=GeoResiduals(fit)
+res=GeoResiduals(fit_pl)
 GeoQQ(res)
 
 
-### checking model assumptions: ST variogram model
+### checking model assumptions: bivariate case 
 vario = GeoVariogram(data=ss1,coordx=coords, bivariate=TRUE, maxdist=c(0.4,0.4,0.4))
 GeoCovariogram(fit_pl,vario=vario,show.vario=TRUE,pch=20)
 
@@ -102,7 +104,3 @@ quilt.plot(coords[,1],coords[,2],ss1[2,],col=colour,main ="Observed data: Second
 image.plot(xx, xx, matrix(pr2$pred,ncol=length(xx)),col=colour, main = paste(" Kriging "),ylab="")
 image.plot(xx, xx, matrix(pr2$mse,ncol=length(xx)),col=colour,
            main = paste("MSE"),ylab="")
-
-
-
-
