@@ -47,7 +47,7 @@ cc$nozero
 start=list(mean=mean, mean1=mean1,scale_s=scale_s,scale_t=scale_t,sill=sill)
 fixed=list(nugget=nugget,power2_s=4,power2_t=4)
 fit = GeoFit(data=ss1,coordx=coords, coordt=coordt, corrmodel=corrmodel,
-            maxdist=0.05,maxtime=1,X=X,
+                neighb =5,maxtime=1,X=X,
             optimizer="BFGS",start=start,fixed=fixed)
 
 fit
