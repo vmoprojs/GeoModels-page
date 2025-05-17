@@ -17,34 +17,68 @@ GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data 
 ![Hanuman](/Screenshots/hanuman.jpg "Hanuman Preview")
 -->
 
-## Features
+# GeoModels Package
 
-The main features of the package are:
+The **GeoModels** package provides a set of procedures for simulation, estimation and prediction of spatio-temporal random fields.
 
--   The type of data that can be modeled are:
-        -     spatial data
-        -     space time data with spatial location sites possibly changing over time
-        -     bivariate spatial data with (possibly different) spatial location sites
+## Main Features
 
--   Data can be defined on euclidean space or on a sphere of arbitrary radius
+### Types of Data Modeled
 
--   The random fields can have the following marginal distributions:
-    -   Gaussian
-    -   Skew-Gaussian
-    -   Student T
-    -   Gamma
-    -   Weibull
-    -   LogGaussian
-    -   Binomial
-    -   Negative binomial
-    -   Wrapped-Gaussian for directional data
--   Parametric models for both regression and dependence analysis through covariance models
--   Parametric (bivariate) spatial and spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern
+- **Spatial data**
+- **Space-time data** with spatial location sites possibly changing over time
+- **Bivariate spatial data** with (possibly different) spatial location sites
 
--   Estimation methods:
-    -   Pairwise likelihood (optional parallel computation with OpenCL)
-    -   Full likelihood (when feasible)
--   Optimal (linear) prediction
+### Data Domain
+
+- Euclidean space
+- Sphere of arbitrary radius
+
+### Marginal Distributions of Random Fields
+
+#### Continuous distributions (supported on the whole real line)
+- Gaussian  
+- Skew-Gaussian  
+- Student T  
+- Logistic  
+- Sinh-arcsinh  
+- Two-piece  
+
+#### Positive continuous distributions
+- Gamma  
+- Weibull  
+- LogGaussian  
+- LogLogistic  
+
+#### Discrete distributions
+- Binomial  
+- Negative Binomial  
+- Poisson  
+
+#### Circular distributions
+- Wrapped-Gaussian  
+
+### Parametric Models
+
+- For **regression** and **dependence analysis** through covariance models
+
+### Covariance Models
+
+- Parametric (bivariate) spatial and spatiotemporal models, including:
+  - Matern  
+  - Generalized Wendland  
+  - Gneiting model  
+  - Bivariate Matern  
+
+### Estimation Methods
+
+- **Composite likelihood** based on pairs (optional parallel computation with OpenCL)
+- **Full likelihood** (when feasible)
+
+### Prediction
+
+- **Optimal (local) linear prediction** (kriging)
+
 
 
 ## Webpage
