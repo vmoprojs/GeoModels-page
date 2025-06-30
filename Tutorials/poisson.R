@@ -8,16 +8,17 @@ model="Poisson";  # model name in the  GeoModels package
 # simulation  stationary case  ####
 ###################################
 
- set.seed(1989);
- N=500;
- coords=cbind(runif(N),runif(N));
- plot(coords ,pch=20,xlab="",ylab="");
+set.seed(1989);
+N =500;
+coords = cbind ( runif ( N ) , runif ( N ));
+plot ( coords , pch =20 , xlab ="", ylab ="");
+
 
 # correlation parameters
-corrmodel = "Matern"; 
-scale = 0.25/3; 
-smooth =0.5;
-nugget =0;
+corrmodel = "Matern"; ## correlation model
+scale = 0.25 /3; ## scale parameter
+smooth =0.5; ## smooth parameter
+nugget =0; ## nugget parameter
 
 # mean parameter
 mean = 1.5 # regression paramteres 
@@ -34,16 +35,15 @@ plot(table(data_s),ylab = "Frequency")
 ###################################
 # simulation  nonstationary case  #
 ###################################
-corrmodel = "Wend0";        ## correlation model 
-scale = 0.3;               ## scale parameter
-power2=4 ;                  ## power parameter
-nugget=0;                    ## nugget parameter
+corrmodel = "Wend0"; ## correlation model
+scale = 0.2; ## scale parameter
+power2 =4 ; ## power parameter
+nugget =0; ## nugget parameter
 
-
-mean = 0.5 # regression paramteres 
-mean1= -0.15
-a0=rep(1,N);a1=runif(N)
-X=cbind(a0,a1); ## regression matrix
+mean = 1.5 # regression parameter beta _0
+mean1 = -0.25 # regression parameter beta _1
+a0 = rep (1 , N ); a1 = runif ( N )
+X = cbind ( a0 , a1 ); ## regression matrix
 
 
 param=list(nugget=nugget,mean=mean,mean1=mean1, scale=scale, 
