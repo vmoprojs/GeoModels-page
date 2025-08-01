@@ -1,36 +1,46 @@
-
-<!--https://www.w3schools.com/html/html_layout.asp --> 
-<!--https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_flexbox -->
 <!DOCTYPE html>
 <html lang="en"> 
-    
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GeoModels - Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis">
     <title>GeoModels</title>
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-/cLJqNgsTSN3a8IlPQKYlfKaFNoWaNdJwHqjw9S3lm+w+zLOljcXegGbECVRHu8AhE8oFeMpn1tFip7ZtUgWkA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #004d66;
+            --secondary-color: #007b8f;
+            --accent-color: #e0f8ff;
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --light-gray: #f0f0f0;
+            --border-color: #ddd;
+        }
+
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
             margin: 0;
-            background-color: #f4f7f9;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
 
         .header-flex {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #004d66, #007b8f);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 20px 40px;
+            padding: 30px 40px;
             flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container img {
@@ -39,31 +49,46 @@
             margin-right: 30px;
             border-radius: 8px;
             background-color: white;
-            padding: 0px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
         }
 
         .title-container h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .title-container p {
-            margin-top: 5px;
-            font-size: 16px;
-            color: #e0f8ff;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            max-width: 600px;
         }
 
         section {
             display: flex;
             flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         nav {
             flex: 0.6;
             background-color: #fff;
-            border-right: 1px solid #ddd;
-            padding: 20px;
+            border-right: 1px solid var(--border-color);
+            padding: 30px 20px;
             min-width: 220px;
+            position: sticky;
+            top: 0;
+            align-self: flex-start;
+            height: 100vh;
+            overflow-y: auto;
         }
 
         nav ul {
@@ -72,587 +97,730 @@
         }
 
         nav li {
-            margin: 15px 0;
+            margin: 18px 0;
         }
 
         nav a {
             text-decoration: none;
-            color: #004d66;
-            font-weight: bold;
+            color: var(--primary-color);
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: all 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
         }
 
-        nav a:hover {
-            color: #007b8f;
+        nav a:hover, nav a:focus {
+            color: var(--secondary-color);
+            background-color: rgba(0, 77, 102, 0.1);
+        }
+
+        nav a i {
+            width: 20px;
+            text-align: center;
         }
 
         article {
             flex: 3;
             background-color: #fff;
-            padding: 30px;
+            padding: 40px;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
         }
 
-        h1, h2, h3 {
-            color: #004d66;
+        h1, h2, h3, h4, h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            margin-top: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         th, td {
-            padding: 12px;
-            border: 1px solid #ccc;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
         }
 
         tr:nth-child(even) {
-            background-color: #f0f0f0;
+            background-color: var(--light-gray);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 123, 143, 0.1);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
 
         footer {
-            background-color: #004d66;
+            background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 25px;
             margin-top: 40px;
+        }
+
+        footer p {
+            margin-bottom: 0;
         }
 
         code {
             display: block;
             background: #f4f4f4;
-            border-left: 4px solid #007b8f;
-            padding: 10px;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
             margin: 20px 0;
             font-family: monospace;
+            overflow-x: auto;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin: 2rem auto;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .home-link:hover {
+            background-color: var(--secondary-color);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .author-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .author-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .author-location {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .publication {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .publication:last-child {
+            border-bottom: none;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .publication-authors {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
+
+        .publication-journal {
+            color: var(--secondary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .publication-doi {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            nav {
+                flex: 1;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            article {
+                flex: 100%;
+            }
         }
 
         @media (max-width: 768px) {
-            section {
-                flex-direction: column;
-            }
-
             .header-flex {
                 flex-direction: column;
                 text-align: center;
+                padding: 25px 20px;
             }
 
             .logo-container {
                 margin-right: 0;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
 
-            nav {
-                border-right: none;
-                border-bottom: 1px solid #ddd;
+            .title-container h1 {
+                font-size: 1.8rem;
+            }
+
+            .title-container p {
+                font-size: 1rem;
+            }
+
+            nav, article {
+                padding: 20px;
+            }
+
+            .authors-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
-    <body>
-        
-        
-        
-<header class="header-flex">
-  <div class="logo-container">
-    <img src="Figures/headerGeo.jpg" alt="GeoModels Logo">
-  </div>
-  <div class="title-container">
-    <h1>GeoModels</h1>
-    <p>Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis</p>
-  </div>
-</header>
+<body>
+    <header class="header-flex">
+        <div class="logo-container">
+            <img src="Figures/headerGeo.jpg" alt="GeoModels Logo">
+        </div>
+        <div class="title-container">
+            <h1>GeoModels</h1>
+            <p>Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis</p>
+        </div>
+    </header>
 
+    <section>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#Tut"><i class="fas fa-graduation-cap"></i> Tutorials and Examples</a></li>
+                <li><a href="#Res"><i class="fas fa-download"></i> Resources and Download</a></li>
+                <li><a href="#Inst"><i class="fas fa-cogs"></i> Installation Instructions</a></li>
+                <li><a href="#Pub"><i class="fas fa-book"></i> Publications</a></li>
+                <li><a href="#Cit"><i class="fas fa-quote-right"></i> Package Citation</a></li>
+                <li><a href="#Ab"><i class="fas fa-users"></i> About the authors</a></li>
+            </ul>
+        </nav>
         
-        <section>
-            <nav>
-                <ul>
-                    <li><a href="#Tut">Tutorials and Examples</a></li>
-                    <li><a href="#Res">Resources and Download</a></li>
-                    <li><a href="#Inst">Installation Instructions</a></li>
-                    <li><a href="#Pub">Publications</a></li>
-                    <li><a href="#Cit">Package Citation</a></li>
-                    <li><a href="#Ab">About the authors</a></li>
-                </ul>
-            </nav>
+        <article>
+            <h1 id="Home">Welcome to GeoModels</h1>
             
-            <article>
-                <h1> Welcome to GeoModels </h1>
-                
-                
-                
-                <p>The GeoModels package provides a set of procedures for simulation,  estimation  and prediction of spatio-temporal random fields.</p>
-                
-                
-                <p>The main features of the package are:</p>
-                
-                
-                <ul>
-                
-                <li><p>The type of data that can be modeled are:</p></li>
-                <ul>
-                    <li>spatial data</li>
-                    <li>space time data with  spatial location sites  possibly changing over time</li>
-                    <li>bivariate spatial data with  (possibly different)  spatial location sites</li>
-                </ul>
-                <li><p>Data can be defined on euclidean space or on a sphere of arbitrary radius</p></li>
-                <li><p>The random fields can have the following marginal distributions:</p></li>
-                
-                <ul>
-                    <!--
-                    <li>   On the real line</li>
-                    <li>   Gaussian</li>
-                    <li>   Skew-Gaussian</li>
-                    <li>   Student T</li>
-                    <li>   Two Piece T</li>
-                    <li>   Two Piece Gaussian</li>
-                    <li>   Logistic</li>
-                    <li>   On the positive real line</li>
-                    <li>   Gamma</li>
-                    <li>   Weibull</li>
-                    <li>   LogLogistic (under development)</li>
-                    <li>   LogGaussian</li>
-                    <li>   On positive natural numbers</li>
-                    <li>   binomial</li>
-                    <li>   negative binomial</li>
-                    <li>   On bounded support</li>
-                    <li>   Uniform  (under development)</li>
-                    <li>   Wrapped-Gaussian for directional data</li>
-                     -->
-                    
-                    <li>Continuous distribution supported on the whole real line:</li>
+            <p>The GeoModels package provides a comprehensive set of procedures for simulation, estimation, and prediction of spatio-temporal random fields with support for both Gaussian and non-Gaussian distributions.</p>
+            
+            <p><strong>Key features of the package:</strong></p>
+            
+            <ul>
+                <li><strong>Data types supported:</strong>
                     <ul>
-
-                    	<li>Gaussian</li>
-                    	<li>Skew-Gaussian</li>
-                    	<li>Student T</li>
-                    	<li>Logistic</li>
-                        <li>Sinh-arcsinh </li>
-                        <li>Two-piece</li>
-                    	<!--<li>TukeyH</li>-->
+                        <li>Spatial data</li>
+                        <li>Space-time data with spatial locations possibly changing over time</li>
+                        <li>Bivariate spatial data with (possibly different) spatial location sites</li>
                     </ul>
-
-                    <li>Positive continuous distributions:</li>
+                </li>
+                <li><strong>Domain flexibility:</strong> Data can be defined on Euclidean space or on a sphere of arbitrary radius</li>
+                <li><strong>Rich selection of marginal distributions:</strong>
                     <ul>
-                    <li>Gamma</li>
-                    <li>Weibull</li>
-                    <li>LogGaussian</li>
-                    <li>LogLogistic</li>
+                        <li><strong>Continuous distributions (real line):</strong>
+                            <ul>
+                                <li>Gaussian</li>
+                                <li>Skew-Gaussian</li>
+                                <li>Student T</li>
+                                <li>Logistic</li>
+                                <li>Sinh-arcsinh</li>
+                                <li>Two-piece</li>
+                            </ul>
+                        </li>
+                        <li><strong>Positive continuous distributions:</strong>
+                            <ul>
+                                <li>Gamma</li>
+                                <li>Weibull</li>
+                                <li>LogGaussian</li>
+                                <li>LogLogistic</li>
+                            </ul>
+                        </li>
+                        <li><strong>Discrete distributions:</strong>
+                            <ul>
+                                <li>Binomial</li>
+                                <li>Negative binomial</li>
+                                <li>Poisson</li>
+                            </ul>
+                        </li>
+                        <li><strong>Circular distributions:</strong>
+                            <ul>
+                                <li>Wrapped-Gaussian</li>
+                            </ul>
+                        </li>
                     </ul>
-
-
-
-                    <li>Discrete distributions:</li>
+                </li>
+                <li><strong>Modeling capabilities:</strong>
                     <ul>
-                    <li>Binomial</li>
-                    <li>Negative binomial</li>
-                    <li>Poisson</li>
+                        <li>Parametric models for both regression and dependence analysis through covariance models</li>
+                        <li>Parametric (bivariate) spatial and spatiotemporal covariance models, including:
+                            <ul>
+                                <li>Matern</li>
+                                <li>Generalized Wendland</li>
+                                <li>Gneiting model</li>
+                                <li>Bivariate Matern</li>
+                            </ul>
+                        </li>
                     </ul>
-
-
-                    <li>Circular distributions:</li>
+                </li>
+                <li><strong>Estimation methods:</strong>
                     <ul>
-                    <li>Wrapped-Gaussian</li>
+                        <li>Composite likelihood based on pairs</li>
+                        <li>Full likelihood (when feasible)</li>
                     </ul>
-                    
-                </ul>
-                <li><p>Parametric models for both regression and dependence analysis through covariance models</p></li>
-                <li><p>Parametric (bivariate) spatial and   spatiotemporal covariance models, including Matern, Generalized Wendland, Gneiting model, bivariate Matern</p></li>
-                <li><p>Estimation methods:</p></li>
-                    <ul>
-                        <li>Composite  likelihood  based on pairs</li>
-                        <li>Full likelihood  (when feasible)</li>
-                        
-                        
-                    </ul>
-                <li><p>Optimal (local) linear prediction (kriging)</p></li>
-                
-                </ul>
-                
-                
-                
-                
-                <h2 id = "Tut">Tutorials and Examples</a></h2>
-                
-                
-                <h3> Spatial Data</h3>
-                
-                <table border="1">
-                    <tr class="header">
-                        <th>Distribution</th>
-                        <th>Description</th>
-                        <th>Link</th>
-                        <th>Code</th>
-                    </tr>
-                    
-                    <tr class="odd">
-                        <td>Gaussian</td>
-                        <td>Analysis of  spatial data using a flexible compactly supported covariance model</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_wend.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Wend_Matern.R">Wend_Matern.R</a></td>
-                        
-                    </tr>
-                    
-                    <tr class="odd">
-                        <td>Gaussian</td>
-                        <td>Analysis of global spatial data on the planet Earth using Gaussian random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_sphere.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/gausphere.R">gausphere.R</a></td>
-                    </tr>
-                    
-                    <tr class="odd">
-                        <td>Skew-Gaussian</td>
-                        <td>Analysis of asymmetric spatial data using skew-Gaussian random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/skew_Gaussian.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_skewg.R">skewg.R</a></td>
-                    </tr>
-                    
-                    <tr class="odd">
-                        <td>t</td>
-                        <td>Analysis of heavy tails spatial data using t random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_t.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_t.R">t.R</a></td>
-                    </tr>
-
-                    <tr class="odd">
-                        <td>Tukey-h</td>
-                        <td>Analysis of heavy tails spatial data using tukey-h random fields </td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_tukey.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tukey_code.R">tukey.R</a></td>
-                    </tr>
-                    
-                    <tr class="odd">
-                        <td>Weibull</td>
-                        <td>Analysis of positive spatial data using Weibull random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_weib.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_weibull.R">weibull.R</a></td>
-                    </tr>
-
-                    <tr class="odd">
-                        <td>Log-Gaussian</td>
-                        <td>Analysis of positive spatial data using Log-Gaussian random fields </td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_loggaussian.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_loggausssian.R">loggausssian.R</a></td>
-                    </tr>
-
-                    <tr class="odd">
-                        <td>Poisson</td>
-                        <td>Analysis of spatial count data using Poisson random fields </td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_poi.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/poisson.R">poisson.R</a></td>
-                    </tr>
-
-                     
-
-                    
-
-                    <tr class="odd">
-                        <td>Binomial</td>
-                        <td>Analysis of  spatial discrete data using Binomial random fields </td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_bin.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_binomial.R">binomial.R</a></td>
-                    </tr>
-                    
-                  
-                    
-                    
+                </li>
+                <li><strong>Prediction:</strong> Optimal (local) linear prediction (kriging)</li>
+            </ul>
+            
+            <h2 id="Tut">Tutorials and Examples</h2>
+            
+            <h3>Spatial Data</h3>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Distribution</th>
+                            <th>Description</th>
+                            <th>Documentation</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gaussian</td>
+                            <td>Analysis of spatial data using a flexible compactly supported covariance model</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_wend.pdf" aria-label="Gaussian Wendland PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Wend_Matern.R" aria-label="Gaussian Wendland R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Gaussian</td>
+                            <td>Analysis of global spatial data on the planet Earth using Gaussian random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_sphere.pdf" aria-label="Sphere tutorial PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/gausphere.R" aria-label="Sphere R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Skew-Gaussian</td>
+                            <td>Analysis of asymmetric spatial data using skew-Gaussian random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/skew_Gaussian.pdf" aria-label="Skew-Gaussian PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_skewg.R" aria-label="Skew-Gaussian R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>t</td>
+                            <td>Analysis of heavy tails spatial data using t random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_t.pdf" aria-label="Student t PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_t.R" aria-label="Student t R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Tukey-h</td>
+                            <td>Analysis of heavy tails spatial data using tukey-h random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_tukey.pdf" aria-label="Tukey-h PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tukey_code.R" aria-label="Tukey-h R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Weibull</td>
+                            <td>Analysis of positive spatial data using Weibull random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_weib.pdf" aria-label="Weibull PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_weibull.R" aria-label="Weibull R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Log-Gaussian</td>
+                            <td>Analysis of positive spatial data using Log-Gaussian random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_loggaussian.pdf" aria-label="Log-Gaussian PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_loggausssian.R" aria-label="Log-Gaussian R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Poisson</td>
+                            <td>Analysis of spatial count data using Poisson random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_poi.pdf" aria-label="Poisson PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/poisson.R" aria-label="Poisson R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                        <tr>
+                            <td>Binomial</td>
+                            <td>Analysis of spatial discrete data using Binomial random fields</td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/tut_bin.pdf" aria-label="Binomial PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                            <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_binomial.R" aria-label="Binomial R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                        </tr>
+                    </tbody>
                 </table>
-                
-                <h3> SpatioTemporal Data</h3>
-                
-                <table border="1">
-                    
-                    <tr class="header">
+            </div>
+            
+            <h3>SpatioTemporal Data</h3>
+            
+            <table>
+                <thead>
+                    <tr>
                         <th>Distribution</th>
                         <th>Description</th>
-                        <th>Link</th>
+                        <th>Documentation</th>
                         <th>Code</th>
                     </tr>
-                    
-                    <tr class="odd">
+                </thead>
+                <tbody>
+                    <tr>
                         <td>Gaussian</td>
                         <td>Analysis of spatio-temporal data using Gaussian random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_ST.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_ST.R">ST.R</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_ST.pdf" aria-label="Gaussian ST PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_ST.R" aria-label="Gaussian ST R code"><i class="fab fa-r-project"></i> R Code</a></td>
                     </tr>
-
-                    
-                    <tr class="even">
+                    <tr>
                         <td>Gaussian</td>
                         <td>Analysis of spatio-temporal data with spatial locations changing over time</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_ST_dyn.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_ST_dyn.R">ST_dyn.R</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_ST_dyn.pdf" aria-label="Gaussian ST dynamic PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/code_ST_dyn.R" aria-label="Gaussian ST dynamic R code"><i class="fab fa-r-project"></i> R Code</a></td>
                     </tr>
-                     
-                </table>
-                
-                
-                <h3> Spatial bivariate Data</h3>
-                
-                <table border="1">
-                    
-                    <tr class="header">
+                </tbody>
+            </table>
+            
+            <h3>Spatial bivariate Data</h3>
+            
+            <table>
+                <thead>
+                    <tr>
                         <th>Distribution</th>
                         <th>Description</th>
-                        <th>Link</th>
+                        <th>Documentation</th>
                         <th>Code</th>
                     </tr>
-                    
-                    <tr class="odd">
+                </thead>
+                <tbody>
+                    <tr>
                         <td>Gaussian</td>
                         <td>Analysis of bivariate spatial data using bivariate Gaussian random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_biv1.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/biv.R">biv.R</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/Gaussian_biv1.pdf" aria-label="Bivariate Gaussian PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/biv.R" aria-label="Bivariate Gaussian R code"><i class="fab fa-r-project"></i> R Code</a></td>
                     </tr>
-                     
-                </table>
-                
-                <h3> Real data analysis</h3>
-                
-                <table border="1">
-                    
-                    <tr class="header">
+                </tbody>
+            </table>
+            
+            <h3>Real data analysis</h3>
+            
+            <table>
+                <thead>
+                    <tr>
                         <th>Distribution</th>
                         <th>Description</th>
-                        <th>Link</th>
+                        <th>Documentation</th>
                         <th>Code</th>
                     </tr>
-                    
-                    <tr class="odd">
-                        <td>Skew-Gaussian</td>
-                        <td>Analysis of  spatial  precipitation anomalies using Gaussian  and skew Gaussian random fields</td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/anom.pdf">Link</a></td>
-                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/anomalies.R">anomalies.R</a></td>
-                    </tr>
-                    <tr class="odd">
-                                          <td>t</td>
-                                          <td>Analysis of maximum temperature of Australia using t random fields</td>
-                                          <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/austr.pdf">Link</a></td>
-                                          <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/austr_temp.R">austr.R</a></td>
-                                      </tr>
-                     
-                </table>
-                
-                <h2 id = "Res">Resources and Download</h2>
-                
-                <p>Latest binaries and sources for GeoModels are availables from <a href="https://github.com/vmoprojs/GeoModels"> GitHub repository:</a></p>
-                
-                <ul>
-                    <li><a href = "https://github.com/vmoprojs/GeoModels"> GeoModels Package sources</a> for any platform</li>
-                    <li><a href = "https://github.com/vmoprojs/GeoModels/blob/master/GeoModels-manual.pdf">Reference Manual</a> </li>
-                    <li><a href = "https://github.com/vmoprojs/GeoModels-page/issues">Bugs report</a> </li>
-                </ul>
-                
-                
-                
-                <h2 id = "Inst">Installation Instructions</h2>
-
-
-                <h3 id = "Inst_1">CRAN version</h3>
-                
-                <p> Our cross-platform version can be found at CRAN: <a href = "https://cran.r-project.org/web/packages/GeoModels/index.html"><code>GeoModels</code></a> package. You can install it with: <code>install.packages("GeoModels")</code></p>
-
-
-                <h2 id = "Pub">Publications</a></h2>
-                
-                <p>Associated publications:</p>
-                
-                <ul>
-
-                    <li>Morales-Navarrete D., Bevilacqua M., Caamaño C., Castro  L.M. (2022) Modelling Point Referenced Spatial Count Data: A Poisson Process Approach. <i>Journal of the American Statistical Association.</i>   Accepted  10.1080/01621459.2022.2140053 
-                    </li>
-
-                    <li>Caamaño-Carrillo C, Bevilacqua M, López C, Morales-Oñate V (2022) Nearest neighbours weighted composite likelihood based on pairs for (non-)Gaussian massive spatial data with an application to Tukey-hh random fields estimation <i>Research Square.</i>  10.21203/rs.3.rs-2073895/v1</li>
-
-                    <li>Blasi F., Caamaño C., Bevilacqua M., Furrer R. (2022) A selective view of climatological data and likelihood estimation <i>Spatial Statistics .</i>  10.1016/j.spasta.2022.100596</li>
-
-
-                    <li>Bevilacqua M., Caamaño C., Porcu E. (2022) Unifying Compactly Supported and Matern Covariance Functions in Spatial Statistics <i>Journal of Multivariate Analysis.</i>  10.1016/j.jmva.2022.104949</li>
-
-                    <li>Bevilacqua M., Caamaño C., Arellano-Valle R. B., Camilo Gomez C. (2022) A class of random fields with two-piece marginal distributions for modeling point-referenced data with spatial outliers. <i>Test</i>.  DOI: 10.1007/s11749-021-00797-5</li>
-
-
-                	<li>Bevilacqua, M., C. Caamano, and C. Gaetan (2020). On modelling positive continuous data with spatio-temporal dependence. <i>Environmetrics. </i> 31(7).</li>
-
-                    <li>Bevilacqua, M., C. Caamano, R. B. A. Valle, and V. Morales-Oñate (2019). On Spatial (Skew) t Processes and Applications. <i> Scandinavian Journal of Statistics. </i>48, 212– 245.</li>
-
-                    <li>Bevilacqua, M., T. Faouzi, R. Furrer, and E. Porcu (2019). Estimation and prediction using generalized Wendland covariance function under fixed domain asymptotics. <i>The Annals of Statistics</i>. 47(2) 828–856  Annals of Statistics.</li>
-                    
-                    <li>Alegria, A., S. Caro, M. Bevilacqua, E. Porcu, and J. Clarke (2017). Estimating covariance functions of multivariate skew-gaussian random fields on the sphere. <i>Spatial Statistics</i> 22, 388 – 402</li>
-
-                    <li>Alegria A., Bevilacqua, M., Porcu, E. (2016) Likelihood-based inference for multivariate space-time wrapped-Gaussian fields. <i>Journal of Statistical Computation and Simulation</i>. 86(13) 2583-2597.</li>
-                    
-                    
-                    <li>Bevilacqua M., Alegria A., Velandia D.,Porcu E. (2016) Composite likelihood inference for multivariate Gaussian random fields.    <i>Journal of Agricultural Biological and Environmental Statistics</i>.   21(3), 448-469</li>
-
-                    <li>  Bevilacqua , M., Vallejos, R. and Velandia D. (2015). Assessing the significance of the correlation between the components of a bivariate Gaussian random field.   <i>Environmetrics</i>.  26(8), 545-556. </li>
-                    
-                    
-                    
-                    <li>Bevilacqua, M. and C. Gaetan (2015). Comparing composite likelihood methods based on pairs for spatial Gaussian random fields. <i>Statistics and Computing</i> 25, 877–892.</li>
-                    
-                    
-                    <li>Bevilacqua, M., C. Gaetan, J. Mateu, and E. Porcu (2012). Estimating space and space- time covariance functions for large data sets: a weighted composite likelihood approach. <i>Journal of the American Statistical Association</i> 107, 268–280</li>
-                    
-                    
-                    <li>Zhang, H. and A. El-Shaarawi (2010). On spatial skew-Gaussian processes and applications. <i>Environmetrics</i> 21(1), 33–47.</li>
-                    
-
-                </ul>
-                
-                
-                <h2 id = "Cit">Package Citation</h2>
-                
-                <p>Once you have installed <code>GeoModels</code>, you can have a BibTex citation with <code>citation("GeoModels")</code> and get:</p>
-                
-                <!--
-                <code>
-                    To cite package ‘GeoModels’ in publications use:
-
-                      Bevilacqua M, Morales-Oñate V, Caamaño-Carrillo C (2024). _GeoModels:
-                      Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data
-                      Analysis_. R package version 2.0.1,
-                      <https://CRAN.R-project.org/package=GeoModels>.
-
-                    A BibTeX entry for LaTeX users is
-
-                      @Manual{,
-                        title = {GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large)
-                    Data Analysis},
-                        author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},
-                        year = {2024},
-                        note = {R package version 2.0.1},
-                        url = {https://CRAN.R-project.org/package=GeoModels},
-  }
-  }
-                </code>
-                -->
-                
-                <table style="width:90%" border="1", bordercolor = "#a7a7a7">
-                    
+                </thead>
+                <tbody>
                     <tr>
-                        <td bgcolor="#fff"><code>
-                            <p>To cite package ‘GeoModels’ in publications use:<br><br>
-                            
-                            Bevilacqua M, Morales-Oñate V, Caamaño-Carrillo C, F Cuevas-Pacheco (2024). _GeoModels:<br>
-                            Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data<br>
-                            Analysis_. R package version 2.1.8,
-                            https://CRAN.R-project.org/package=GeoModels.<br><br>
-                            
-                            A BibTeX entry for LaTeX users is<br>
-                            
-                            @Manual{GM2024,<br>
-                            title = {GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large)
-                            Data Analysis},<br>
-                            author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},<br>
-                            year = {2024},<br>
-                            note = {R package version 2.0.1},<br>
-                            url = {https://CRAN.R-project.org/package=GeoModels},<br>
-                            }</p>
-                        </code></td>
+                        <td>Skew-Gaussian</td>
+                        <td>Analysis of spatial precipitation anomalies using Gaussian and skew Gaussian random fields</td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/anom.pdf" aria-label="Anomalies PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/anomalies.R" aria-label="Anomalies R code"><i class="fab fa-r-project"></i> R Code</a></td>
                     </tr>
-                </table>
+                    <tr>
+                        <td>t</td>
+                        <td>Analysis of maximum temperature of Australia using t random fields</td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/austr.pdf" aria-label="Australia temp PDF"><i class="fas fa-file-pdf"></i> PDF</a></td>
+                        <td><a href="https://github.com/vmoprojs/GeoModels-page/blob/master/Tutorials/austr_temp.R" aria-label="Australia temp R code"><i class="fab fa-r-project"></i> R Code</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2 id="Res">Resources and Download</h2>
+            
+            <p>GeoModels is actively developed on GitHub. The latest binaries and source code are available from our repository:</p>
+            
+            <ul>
+                <li><i class="fas fa-code-branch"></i> <a href="https://github.com/vmoprojs/GeoModels">GeoModels Package sources</a> for any platform</li>
+                <li><i class="fas fa-book"></i> <a href="https://github.com/vmoprojs/GeoModels/blob/master/GeoModels-manual.pdf">Reference Manual</a></li>
+                <li><i class="fas fa-bug"></i> <a href="https://github.com/vmoprojs/GeoModels-page/issues">Bug reports and issues</a></li>
+            </ul>
+            
+            <h2 id="Inst">Installation Instructions</h2>
+            
+            <h3>CRAN Installation</h3>
+            <p>The stable version of GeoModels is available on CRAN. Install it directly in R with:</p>
+            <code>install.packages("GeoModels")</code>
+            
+            <h3>Development Version</h3>
+            <p>To install the latest development version from GitHub:</p>
+            <code>
+                # Install devtools if you don't already have it<br>
+                install.packages("devtools")<br><br>
                 
-                <h2 id = "Ab">About the authors</h2>
+                # Install GeoModels from GitHub<br>
+                devtools::install_github("vmoprojs/GeoModels")
+            </code>
+            
+            <h2 id="Pub">Publications</h2>
+            
+            <p>GeoModels has been used in the following peer-reviewed publications:</p>
+            
+            <div class="publications-list">
+                <div class="publication">
+                    <div class="publication-title">Modelling Point Referenced Spatial Count Data: A Poisson Process Approach</div>
+                    <div class="publication-authors">Morales-Navarrete D., Bevilacqua M., Caamaño C., Castro L.M.</div>
+                    <div class="publication-journal">Journal of the American Statistical Association, 2022</div>
+                    <div class="publication-doi">DOI: 10.1080/01621459.2022.2140053</div>
+                </div>
                 
+                <div class="publication">
+                    <div class="publication-title">Nearest neighbours weighted composite likelihood based on pairs for (non-)Gaussian massive spatial data with an application to Tukey-hh random fields estimation</div>
+                    <div class="publication-authors">Caamaño-Carrillo C, Bevilacqua M, López C, Morales-Oñate V</div>
+                    <div class="publication-journal">Research Square, 2022</div>
+                    <div class="publication-doi">DOI: 10.21203/rs.3.rs-2073895/v1</div>
+                </div>
                 
-                <h4 id="heading5">Moreno Bevilacqua</h4>
+                <div class="publication">
+                    <div class="publication-title">A selective view of climatological data and likelihood estimation</div>
+                    <div class="publication-authors">Blasi F., Caamaño C., Bevilacqua M., Furrer R.</div>
+                    <div class="publication-journal">Spatial Statistics, 2022</div>
+                    <div class="publication-doi">DOI: 10.1016/j.spasta.2022.100596</div>
+                </div>
                 
-                <!--<img src="Figures/moreno.jpg" alt="Moreno" width="260" height="400"> -->
-                    
-                    <h5 id="heading5">Chile</h5>
-                    
-                    <p>Moreno Bevilacqua is an Associate Professor at the Faculty of Engineering and Science of  Adolfo Ibañez University in Viña del Mar (Chile) from August 2020.
-					He worked  at the Statistics Department of University of Valparaiso (Chile) from August 2012.
-					He has carried out research as: a post-doc at the Department of Statistics, University Ca' Foscari of Venice from May 2008 to December 2010, a research fellow at the University of Bergamo from January 2011 to July 2012.<br>
-                    He received his PhD in Statistics in 2008 and his Degree in Statistics in 2001 from the University of Padua. His main research interests concern theory, methodology and applications in multivariate spatio-temporal statistics.</p>
-                    
-                    
-                    
-                    <a title="Personal site" href="https://sites.google.com/view/moreno-bevilacqua/">Personal site</a>
-                    
-                    
-                    
-                    
-                    <h4 id="heading5">Víctor Morales-Oñate</h4>
-                    
-                    
-                   <!-- <img src="Figures/vmo.jpg" alt="VMO" width="320" height="250"> -->
-                        
-                        
-                        <h5 id="heading5">Pelileo-Ecuador</h5>
-                        
-                        
-                        <p>Víctor received his PhD in Statistics from Universidad de Valparaíso-Chile in 2018. His main research interests concern computational spatial (temporal) geostatistics applications.
-                        <br>
-                        Other interests include data analytics in business, machine learning, quantitative economy and philosophy, particularly, Bertrand Russell's political ideas.</p>
-                        
-                        <a title="Personal site" href="https://sites.google.com/site/moralesonatevictor/">Personal site</a>
-                        <br>
-                        <br>
+                <div class="publication">
+                    <div class="publication-title">Unifying Compactly Supported and Matern Covariance Functions in Spatial Statistics</div>
+                    <div class="publication-authors">Bevilacqua M., Caamaño C., Porcu E.</div>
+                    <div class="publication-journal">Journal of Multivariate Analysis, 2022</div>
+                    <div class="publication-doi">DOI: 10.1016/j.jmva.2022.104949</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">A class of random fields with two-piece marginal distributions for modeling point-referenced data with spatial outliers</div>
+                    <div class="publication-authors">Bevilacqua M., Caamaño C., Arellano-Valle R. B., Camilo Gomez C.</div>
+                    <div class="publication-journal">Test, 2022</div>
+                    <div class="publication-doi">DOI: 10.1007/s11749-021-00797-5</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">On modelling positive continuous data with spatio-temporal dependence</div>
+                    <div class="publication-authors">Bevilacqua, M., C. Caamano, and C. Gaetan</div>
+                    <div class="publication-journal">Environmetrics, 2020</div>
+                    <div class="publication-doi">DOI: 10.1002/env.2628</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">On Spatial (Skew) t Processes and Applications</div>
+                    <div class="publication-authors">Bevilacqua, M., C. Caamano, R. B. A. Valle, and V. Morales-Oñate</div>
+                    <div class="publication-journal">Scandinavian Journal of Statistics, 2019</div>
+                    <div class="publication-doi">DOI: 10.1111/sjos.12328</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Estimation and prediction using generalized Wendland covariance function under fixed domain asymptotics</div>
+                    <div class="publication-authors">Bevilacqua, M., T. Faouzi, R. Furrer, and E. Porcu</div>
+                    <div class="publication-journal">The Annals of Statistics, 2019</div>
+                    <div class="publication-doi">DOI: 10.1214/18-AOS1709</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Estimating covariance functions of multivariate skew-gaussian random fields on the sphere</div>
+                    <div class="publication-authors">Alegria, A., S. Caro, M. Bevilacqua, E. Porcu, and J. Clarke</div>
+                    <div class="publication-journal">Spatial Statistics, 2017</div>
+                    <div class="publication-doi">DOI: 10.1016/j.spasta.2017.05.003</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Likelihood-based inference for multivariate space-time wrapped-Gaussian fields</div>
+                    <div class="publication-authors">Alegria A., Bevilacqua, M., Porcu, E.</div>
+                    <div class="publication-journal">Journal of Statistical Computation and Simulation, 2016</div>
+                    <div class="publication-doi">DOI: 10.1080/00949655.2015.1122708</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Composite likelihood inference for multivariate Gaussian random fields</div>
+                    <div class="publication-authors">Bevilacqua M., Alegria A., Velandia D., Porcu E.</div>
+                    <div class="publication-journal">Journal of Agricultural Biological and Environmental Statistics, 2016</div>
+                    <div class="publication-doi">DOI: 10.1007/s13253-016-0254-5</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Assessing the significance of the correlation between the components of a bivariate Gaussian random field</div>
+                    <div class="publication-authors">Bevilacqua, M., Vallejos, R. and Velandia D.</div>
+                    <div class="publication-journal">Environmetrics, 2015</div>
+                    <div class="publication-doi">DOI: 10.1002/env.2348</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Comparing composite likelihood methods based on pairs for spatial Gaussian random fields</div>
+                    <div class="publication-authors">Bevilacqua, M. and C. Gaetan</div>
+                    <div class="publication-journal">Statistics and Computing, 2015</div>
+                    <div class="publication-doi">DOI: 10.1007/s11222-014-9471-3</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">Estimating space and space-time covariance functions for large data sets: a weighted composite likelihood approach</div>
+                    <div class="publication-authors">Bevilacqua, M., C. Gaetan, J. Mateu, and E. Porcu</div>
+                    <div class="publication-journal">Journal of the American Statistical Association, 2012</div>
+                    <div class="publication-doi">DOI: 10.1080/01621459.2011.646928</div>
+                </div>
+                
+                <div class="publication">
+                    <div class="publication-title">On spatial skew-Gaussian processes and applications</div>
+                    <div class="publication-authors">Zhang, H. and A. El-Shaarawi</div>
+                    <div class="publication-journal">Environmetrics, 2010</div>
+                    <div class="publication-doi">DOI: 10.1002/env.993</div>
+                </div>
+            </div>
+            
+            <h2 id="Cit">Package Citation</h2>
+            
+            <p>To cite GeoModels in publications, use:</p>
+            
+            <div class="citation-box">
+                <code>
+                    Bevilacqua M, Morales-Oñate V, Caamaño-Carrillo C, F Cuevas-Pacheco (2024).<br>
+                    <em>GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis.</em><br>
+                    R package version 2.1.8, https://CRAN.R-project.org/package=GeoModels.
+                </code>
+            </div>
+            
+            <p>BibTeX entry for LaTeX users:</p>
+            
+            <code>
+                @Manual{GM2024,<br>
+                title = {GeoModels: Procedures for Gaussian and Non Gaussian Geostatistical (Large) Data Analysis},<br>
+                author = {Moreno Bevilacqua and Víctor Morales-Oñate and Christian Caamaño-Carrillo},<br>
+                year = {2024},<br>
+                note = {R package version 2.0.1},<br>
+                url = {https://CRAN.R-project.org/package=GeoModels},<br>
+                }
+            </code>
+            
+            <h2 id="Ab">About the Authors</h2>
+            
+            <div class="authors-grid">
+                <div class="author-card">
+                    <img src="Figures/moreno.jpg" alt="Moreno Bevilacqua" class="author-img">
+                    <h4>Moreno Bevilacqua</h4>
+                    <div class="author-location">Chile</div>
+                    <p>Associate Professor at the Faculty of Engineering and Science of Adolfo Ibañez University in Viña del Mar (Chile). His main research interests concern theory, methodology and applications in multivariate spatio-temporal statistics.</p>
+                    <a href="https://sites.google.com/view/moreno-bevilacqua/" class="author-link" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Personal site
+                    </a>
+                </div>
+                
+                <div class="author-card">
+                    <img src="Figures/vmo.jpg" alt="Víctor Morales-Oñate" class="author-img">
+                    <h4>Víctor Morales-Oñate</h4>
+                    <div class="author-location">Pelileo-Ecuador</div>
+                    <p>Received his PhD in Statistics from Universidad de Valparaíso-Chile in 2018. His main research interests concern computational spatial (temporal) geostatistics applications. Other interests include data analytics in business, machine learning, quantitative economy and philosophy.</p>
+                    <a href="https://sites.google.com/site/moralesonatevictor/" class="author-link" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Personal site
+                    </a>
+                </div>
+                
+                <div class="author-card">
+                    <img src="Figures/christian.jpg" alt="Christian Caamaño-Carrillo" class="author-img">
+                    <h4>Christian Caamaño-Carrillo</h4>
+                    <div class="author-location">Concepción-Chile</div>
+                    <p>Assistant Professor at the Statistics Department of Universidad del Bío-Bío since 2013. He received his PhD in Statistics from Universidad de Valparaíso in 2018. His main research interests concern theory, methodology and applications in space-time statistics for non-Gaussian data.</p>
+                    <a href="https://www.researchgate.net/profile/Christian_Caamano" class="author-link" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Research profile
+                    </a>
+                </div>
+                
+                <div class="author-card">
+                    <img src="Figures/francisco.jpg" alt="Francisco Cuevas-Pacheco" class="author-img">
+                    <h4>Francisco Cuevas-Pacheco</h4>
+                    <div class="author-location">Valparaíso-Chile</div>
+                    <p>A young Chilean researcher (1987) living in Valparaíso. His research topics include spatio and spatio-temporal point process and random fields, simulation methods, and computational statistics. He loves music, playing guitar, learning languages and sports.</p>
+                    <a href="https://fcocuevas87.github.io/" class="author-link" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Personal site
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#Home" class="home-link">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </article>
+    </section>
 
-
-<h4 id="heading5">Christian Caamaño-Carrillo</h4>
-                    
-                    
-                   <!-- <img src="Figures/vmo.jpg" alt="VMO" width="320" height="250"> -->
-                        
-                        
-                        <h5 id="heading5">Concepción-Chile</h5>
-                        
-                        
-                        <p>Christian Caamaño-Carrillo is an Assistant Professor at the Statistics Department of Universidad del Bío-Bío from 2013. He received his PhD in Statistics from Universidad de Valparaíso in 2018 and his Master's in Statistics in 2012. 
-                        <br>His main research interests concern theory, methodology and applications in space-time statistics for non-Gaussian data.</p>
-                        
-                        <a title="Personal site" href="https://www.researchgate.net/profile/Christian_Caamano">Personal site</a>
-
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-                            <h4 id="heading5">Francisco Cuevas-Pacheco</h4>
-                    
-                    
-                   <!-- <img src="Figures/vmo.jpg" alt="VMO" width="320" height="250"> -->
-                        
-                        
-                        <h5 id="heading5">Valparaíso-Chile</h5>
-                        
-                        
-                        <p>Francisco Cuevas is a young chilean person (1987) living in Valparaíso, Chile. He likes work on statistics and develop different tools for data analyisis. His cuerrent research topics are: spatio and spatio-temporal point process and random fields, simulation methods, and computational statistics. He loves music, play guitar, learn languages and do sports. 
-                        </p>
-                        
-                        <a title="Personal site" href="https://fcocuevas87.github.io//">Personal site</a>
-                        <br>
-                        <br>
-            </article>
-        </section>
-
-        <p style="font-size:160%; text-align:center;">
-  <a href="#Home" style="text-decoration: none; color: #004d66;">
-    <i class="fas fa-home"></i> HOME
-  </a>
-</p>
-                            <br>
-        
-        <footer>
-            <p>GeoModels, last update: july, 2025</p>
-            <!-- <img src="Figures/under_construction.jpg" alt="VMO" width="200" height="60"> -->
-        </footer>
-        
-    </body>
+    <footer>
+        <p>GeoModels - Open Source Geostatistical Analysis Package</p>
+        <p>Last update: July 2025</p>
+        <div class="social-links">
+            <a href="https://github.com/vmoprojs/GeoModels" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+</body>
 </html>
