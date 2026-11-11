@@ -51,13 +51,13 @@ fit2 <- GeoFit2(data=data,coordx=coords,corrmodel=corrmodel,
 
 fit2
 
-res=GeoModels::GeoResiduals(fit2) # computing residuals
+res=GeoResiduals(fit2) # computing residuals
 
 GeoQQ(res)
 
 GeoQQ(res,type="D",ylim=c(0,0.5),breaks=20)
 
-vario <- GeoModels::GeoVariogram(data=res$data,coordx=coords,maxdist=0.4)
+vario <- GeoVariogram(data=res$data,coordx=coords,maxdist=0.4)
 GeoCovariogram(res,show.vario=TRUE,vario=vario,pch=20)
 
 ##########  kriging ###############
