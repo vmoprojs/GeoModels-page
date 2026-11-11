@@ -51,20 +51,21 @@ fitML <- GeoModels::GeoFit(data=sim,coordx=coords,
     likelihood="Full",type="Standard",start=start,
     fixed=fixed)
 
+fitML
 
 fitML$param[["scale"]] / fitML$param[["power2"]]
 
 
 
 
-res=GeoModels::GeoResiduals(fitML)
+res=GeoResiduals(fitML)
 
-GeoModels::GeoQQ(res)
+GeoQQ(res)
 
-vario=GeoModels::GeoVariogram(data=res$data,
+vario=GeoVariogram(data=res$data,
                               coordx=coords,maxdist=0.6)
 
-GeoModels::GeoCovariogram(res,vario=vario,
+GeoCovariogram(res,vario=vario,
                            show.vario=TRUE,pch=20)
 
 
@@ -72,7 +73,7 @@ xx=seq(0,1,0.015)
 loc_to_pred=as.matrix(expand.grid(xx,xx))
 
 
-pr=GeoModels::GeoKrig(fitML,loc=loc_to_pred,
+pr=GeoKrig(fitML,loc=loc_to_pred,
                        sparse=TRUE,mse=TRUE)
 
 
