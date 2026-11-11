@@ -10,13 +10,13 @@ coords=cbind(x,y)
 X=cbind(rep(1,NN),runif(NN)) # unused; preserves original R seed sequence
 
 
-GeoModels::NuisParam("Gaussian")
+NuisParam("Gaussian")
 mean=5; sill=1; nugget=0
 
 
 
 corrmodel="GenWend_Matern"
-GeoModels::CorrParam(corrmodel)
+CorrParam(corrmodel)
 mu=3
 scale=0.05; power2=1/mu; smooth=0
 
@@ -26,11 +26,11 @@ scale*(1/power2)
 
 param=list(nugget=nugget,mean=mean,scale=scale,
 sill=sill,power2=power2,smooth=smooth)
-sim=GeoModels::GeoSim(coordx=coords,corrmodel=corrmodel,
+sim=GeoSim(coordx=coords,corrmodel=corrmodel,
 sparse=FALSE,model="Gaussian",param=param)$data
 
 
-cc=GeoModels::GeoCovmatrix(coordx=coords,corrmodel=corrmodel,
+cc=GeoCovmatrix(coordx=coords,corrmodel=corrmodel,
 sparse=TRUE,model="Gaussian",param=param)
 is.spam(cc$covmatrix)
 cc$nozero
@@ -45,7 +45,7 @@ lower=list(mean=-I,scale=1e-5,sill=1e-5,power2=1e-4)
 upper=list(mean=I,scale=I,sill=I,power2=1/1.5)
 fixed=list(nugget=nugget,smooth=smooth)
 
-fitML <- GeoModels::GeoFit(data=sim,coordx=coords,
+fitML <- GeoFit(data=sim,coordx=coords,
     corrmodel=corrmodel,model="Gaussian",varest=TRUE,
     optimizer=optimizer,lower=lower,upper=upper,
     likelihood="Full",type="Standard",start=start,
