@@ -64,7 +64,7 @@ res=GeoResiduals(fit2)
 
 GeoQQ(res)
 
-vario <- GeoModels::GeoVariogram(data=res$data,coordx=coords,maxdist=0.4)
+vario <- GeoVariogram(data=res$data,coordx=coords,maxdist=0.4)
 
 GeoCovariogram(res,show.vario=TRUE,vario=vario,pch=20,ylim=c(0,2))
 
